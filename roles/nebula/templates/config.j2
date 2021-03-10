@@ -1,0 +1,83 @@
+pki:
+  ca: '{{ nebula.pki.ca }}'
+  cert: '{{ nebula.pki.cert }}'
+  key: '{{ nebula.pki.key }}'
+  blocklist: '{{ nebula.pki.blocklist }}'
+static_host_map:
+lighthouse:
+  am_lighthouse: false
+  serve_dns: false
+  dns:
+    host: 0.0.0.0
+    port: 53
+  interval: 60
+  hosts:
+  remote_allow_list:
+  local_allow_list:
+listen:
+  host: 0.0.0.0
+  port: 4242
+  batch: 64
+  read_buffer: 10485760
+  write_buffer: 10485760
+routines: 1
+punchy:
+  punch: true
+  respond: true
+  delay: 1s
+cipher: chachapoly
+local_range: "172.16.0.0/24"
+sshd:
+  enabled: true
+  listen: 127.0.0.1:2222
+  host_key: ./ssh_host_ed25519_key
+  authorized_users:
+  disabled: false
+  dev: nebula1
+  drop_local_broadcast: false
+  drop_multicast: false
+  tx_queue: 500
+  mtu: 1300
+  routes:
+  unsafe_routes:
+logging:
+  level: info
+  format: text
+  disable_timestamp: true
+  timestamp_format: "2006-01-02T15:04:05.000Z07:00"
+stats:
+  type: graphite
+  prefix: nebula
+  protocol: tcp
+  host: 127.0.0.1:9999
+  interval: 10s
+  type: prometheus
+  listen: 127.0.0.1:8080
+  path: /metrics
+  namespace: prometheusns
+  subsystem: nebula
+  interval: 10s
+  message_metrics: false
+  lighthouse_metrics: false
+handshakes:
+  try_interval: 100ms
+  retries: 20
+  wait_rotation: 5
+  trigger_buffer: 64
+firewall:
+  conntrack:
+    tcp_timeout: 12m
+    udp_timeout: 3m
+    default_timeout: 10m
+    max_connections: 100000
+  outbound:
+    - port: any
+      proto: any
+      host: any
+  inbound:
+    - port: any
+      proto: icmp
+      host: any
+    - port: 443
+      proto: tcp
+      groups:
