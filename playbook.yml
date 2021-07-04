@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  vars:
+    user: test
+  roles:
+    - role: workstation
