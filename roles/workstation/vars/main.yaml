@@ -1,8 +1,6 @@
 packages:
 - git
 - glances
-- go
-- helm
 - htop
 - jq
 - lastpass-cli
