@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-ANSIBLE_URL="git@github.com:3letteragency/ansible-3la-microcloud.git"
+ANSIBLE_URL="https://github.com/Oogy/ansible-3la-microcloud.git"
 
 safe_apt(){
 	while fuser /var/{lib/{dpkg,apt/lists},cache/apt/archives}/lock >/dev/null 2>&1 ; do
