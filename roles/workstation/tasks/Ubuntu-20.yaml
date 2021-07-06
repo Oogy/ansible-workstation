@@ -18,13 +18,25 @@
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
 
+- name: Check if Mirantis Lens is installed
+  stat:
+    path: /usr/bin/lens
+  register: stat_lens
+
 - name: Install Mirantis Lens
   apt:
     deb: "{{ mirantis_lens_url }}"
+  when: not stat_lens.stat.exists
+
+- name: Check if Mirantis Lens is installed
+  stat:
+    path: /usr/bin/lens
+  register: stat_mattermost
 
 - name: Install Mattermost
   apt:
     deb: "{{ mattermost_url }}"
+  when: not stat_mattermost.stat.exists
 
 - name: Install Packages
   package:
