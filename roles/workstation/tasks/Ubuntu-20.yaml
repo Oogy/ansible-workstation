@@ -30,7 +30,7 @@
 
 - name: Check if Mattermost is installed
   stat:
-    path: /usr/bin/lens
+    path: /usr/bin/mattermost-desktop
   register: stat_mattermost
 
 - name: Install Mattermost
