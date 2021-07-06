@@ -22,6 +22,10 @@
   apt:
     deb: "{{ mirantis_lens_url }}"
 
+- name: Install Mattermost
+  apt:
+    deb: "{{ mattermost_url }}"
+
 - name: Install Packages
   package:
     name: "{{ item }}"

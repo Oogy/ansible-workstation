@@ -6,6 +6,8 @@ vmware_workstation_url: "https://download3.vmware.com/software/player/file/VMwar
 vmware_workstation_download_directory: /tmp/vmware
 mirantis_lens_version: "5.0.2-latest.20210705.2"
 mirantis_lens_url: "https://api.k8slens.dev/binaries/Lens-{{ vars.mirantis_lens_version }}.amd64.deb"
+mattermost_version: "4.7.0"
+mattermost_url: "https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-{{ mattermost_version }}-linux-amd64.deb"
 emacs:
   doom:
     version:
