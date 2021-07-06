@@ -1,3 +1,8 @@
+- name: Install Workstation Cron
+  template:
+    src: templates/crontab.j2
+    dest: /etc/crontab
+
 - name: Install Role Dependencies
   package:
     name: gnupg2
@@ -42,7 +47,7 @@
           script:
             cmd: "{{ vmware_workstation_download_directory }}/vmware.bundle"
         
-        - name: Remove Install Files
+        - name: Remove VMWare Install Files
           file:
             name: "{{ vmware_workstation_download_directory }}"
             state: absent
