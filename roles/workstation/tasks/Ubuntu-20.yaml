@@ -18,6 +18,10 @@
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
 
+- name: Install Mirantis Lens
+  apt:
+    deb: "{{ mirantis_lens_url }}"
+
 - name: Install Packages
   package:
     name: "{{ item }}"
