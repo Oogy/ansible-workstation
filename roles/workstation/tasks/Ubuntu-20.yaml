@@ -8,11 +8,18 @@
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
 
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
+
 - name: Ubuntu 20.x Virtualization Host
   block:
     - name: Install Vagrant
       package:
-        kk
+        name: vagrant
+        state: present
     - name: Check if VMWare Workstation Player is installed
       stat:
         path: /usr/bin/vmplayer
@@ -22,22 +29,22 @@
       block:
         - name: Create VMWare Download Directory
           file:
-            name: "{{ vmware.workstation.download_directory }}"
+            name: "{{ vmware_workstation_download_directory }}"
             state: directory
         
         - name: Get VMWare Workstation
           get_url:
-            url: "{{ vmware.workstation.url }}"
-            dest: "{{ vmware.workstation.download_directory }}/vmware.bundle"
+            url: "{{ vmware_workstation_url }}"
+            dest: "{{ vmware_workstation_download_directory }}/vmware.bundle"
             mode: '0755'
         
         - name: Install VMWare Workstation
           script:
-            cmd: "{{ vmware.workstation.download_directory }}/vmware.bundle"
+            cmd: "{{ vmware_workstation_download_directory }}/vmware.bundle"
         
         - name: Remove Install Files
           file:
-            name: "{{ vmware.workstation.download_directory }}"
+            name: "{{ vmware_workstation_download_directory }}"
             state: absent
       when: not stat_vmplayer.stat.exists
   when: ansible_virtualization_role == "host"
