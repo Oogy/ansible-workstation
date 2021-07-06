@@ -8,7 +8,6 @@ packages:
 - p7zip
 - packer
 - pwgen
-- pyenv
 - pypy
 - python3
 - rsync
