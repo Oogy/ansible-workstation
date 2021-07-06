@@ -18,5 +18,12 @@ dependencies(){
 }
 
 install(){
-	ansible-pull -i localhost -U $ANSIBLE_URL main.yml
+	ansible-pull -i localhost -U ${ANSIBLE_URL} main.yml
 }
+
+main(){
+  dependencies
+  install
+}
+
+main
