@@ -1,0 +1,4 @@
+- name: Microcloud Workstation
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yaml"

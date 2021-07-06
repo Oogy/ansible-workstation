@@ -1,0 +1,3 @@
+# do regular stuff
+# do this stuff when {{ workstation.type == 'soft' }}
+## VMWare Workstation

@@ -1,0 +1,50 @@
+- name: Install Role Dependencies
+  package:
+    name: gnupg2
+    state: present
+
+- name: Install Hashicorp Repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
+
+- name: Ubuntu 20.x Virtualization Host
+  block:
+    - name: Install Vagrant
+      package:
+        name: vagrant
+        state: present
+    - name: Check if VMWare Workstation Player is installed
+      stat:
+        path: /usr/bin/vmplayer
+      register: stat_vmplayer
+    
+    - name: Install VMWare Workstation Player
+      block:
+        - name: Create VMWare Download Directory
+          file:
+            name: "{{ vmware_workstation_download_directory }}"
+            state: directory
+        
+        - name: Get VMWare Workstation
+          get_url:
+            url: "{{ vmware_workstation_url }}"
+            dest: "{{ vmware_workstation_download_directory }}/vmware.bundle"
+            mode: '0755'
+        
+        - name: Install VMWare Workstation
+          script:
+            cmd: "{{ vmware_workstation_download_directory }}/vmware.bundle"
+        
+        - name: Remove Install Files
+          file:
+            name: "{{ vmware_workstation_download_directory }}"
+            state: absent
+      when: not stat_vmplayer.stat.exists
+  when: ansible_virtualization_role == "host"
