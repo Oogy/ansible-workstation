@@ -15,6 +15,41 @@ packages:
 - terraform
 - tmux
 - tree
+homebrew_packages:
+- d12frosted/emacs-plus/emacs-plus@27
+- git
+- glances
+- htop
+- jq
+- lastpass-cli
+- nmap
+- p7zip
+- packer
+- pwgen
+- pypy
+- python3
+- rsync
+- s3cmd
+- terraform
+- tmux
+- tree
+homebrew_cask_packages:
+- anaconda
+- discord
+- docker
+- homebrew/cask-fonts/font-ubuntu-mono-nerd-font
+- homebrew/cask-fonts/font-source-code-pro
+- google-chrome
+- iterm2
+- istat-menus
+- karabiner-elements
+- mattermost
+- qutebrowser
+- steamcmd
+- vagrant
+- vlc
+- vmware-fusion
+- lens
 vmware_workstation_version: "16.1.2-17966106"
 vmware_workstation_url: "https://download3.vmware.com/software/player/file/VMware-Player-{{ vars.vmware_workstation_version }}.x86_64.bundle"
 vmware_workstation_download_directory: /tmp/vmware
@@ -22,8 +57,3 @@ mirantis_lens_version: "5.0.2-latest.20210705.2"
 mirantis_lens_url: "https://api.k8slens.dev/binaries/Lens-{{ vars.mirantis_lens_version }}.amd64.deb"
 mattermost_version: "4.7.0"
 mattermost_url: "https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-{{ mattermost_version }}-linux-amd64.deb"
-emacs:
-  doom:
-    version:
-    url:
-    dest:

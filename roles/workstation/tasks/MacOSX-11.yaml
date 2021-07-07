@@ -1,3 +1,29 @@
-# do regular stuff
-# do this stuff when {{ workstation.type == 'soft' }}
-## VMWare Workstation
+- name: Install Workstation Script
+  template:
+    src: templates/workstation.j2
+    dest: /usr/local/bin/workstation
+    mode: '0755'
+
+- name: Tap Hashicorp
+  community.general.homebrew_tap:
+    name: hashicorp/tap
+    state: present
+
+- name: Install Homebrew Packages
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ homebrew_packages }}"
+
+- name: Install Homebrew Cask Packages
+  command: brew install --cask {{ item }}
+  loop: '{{ homebrew_cask_packages }}'
+
+- name: Homebrew Cleanup
+  command: brew cleanup
+
+- name: Get Doom Emacs
+  git:
+    repo: 'https://github.com/hlissner/doom-emacs.git'
+    depth: 1
+    dest: ~/.emacs.d
