@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-ANSIBLE_URL="https://github.com/Oogy/ansible-3la-microcloud.git"
+ANSIBLE_URL="https://github.com/Oogy/ansible-workstation.git"
 
 os_family(){
   uname -s
