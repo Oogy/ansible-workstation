@@ -1,4 +1,5 @@
 packages:
+- cockpit
 - git
 - glances
 - htop
