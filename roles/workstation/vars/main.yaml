@@ -12,6 +12,10 @@ packages:
 - python3
 - rsync
 - s3cmd
+- syncthing
+- syncthing-discosrv
+- syncthing-gtk
+- syncthing-relaysrv
 - terraform
 - tmux
 - tree
