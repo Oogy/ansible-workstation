@@ -20,6 +20,7 @@ packages:
 - tmux
 - tree
 homebrew_packages:
+- autossh
 - d12frosted/emacs-plus/emacs-plus@27
 - git
 - glances
