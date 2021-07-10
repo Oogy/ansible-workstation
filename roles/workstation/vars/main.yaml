@@ -36,6 +36,7 @@ homebrew_packages:
 - python3
 - rsync
 - s3cmd
+- syncthing
 - terraform
 - tmux
 - tree

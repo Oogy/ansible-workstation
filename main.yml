@@ -4,3 +4,4 @@
     user: test
   roles:
     - role: workstation
+#    - role: syncthing

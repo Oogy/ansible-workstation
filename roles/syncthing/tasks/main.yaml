@@ -1,0 +1,6 @@
+- name: Start Syncthing
+  ansible.builtin.systemd:
+    state: started
+    name: "syncthing@{{ syncthing_user }}.service"
+    enabled: yes
+
