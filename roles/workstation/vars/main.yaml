@@ -1,4 +1,5 @@
 packages:
+- firefox
 - cockpit
 - git
 - glances
@@ -43,6 +44,7 @@ homebrew_packages:
 - tmux
 - tree
 homebrew_cask_packages:
+- firefox
 - anaconda
 - discord
 - docker
