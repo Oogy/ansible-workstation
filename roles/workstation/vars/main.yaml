@@ -24,6 +24,8 @@ packages:
 - tmux
 - tree
 homebrew_packages:
+- node
+- npm
 - autossh
 - d12frosted/emacs-plus/emacs-plus@27
 - git
