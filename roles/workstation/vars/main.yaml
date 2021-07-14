@@ -24,6 +24,7 @@ packages:
 - tmux
 - tree
 homebrew_packages:
+- derailed/k9s/k9s
 - node
 - npm
 - autossh
