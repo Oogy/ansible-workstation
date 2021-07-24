@@ -47,6 +47,7 @@ homebrew_packages:
 - terraform
 - tmux
 - tree
+- android-platform-tools
 homebrew_cask_packages:
 - firefox
 - anaconda
