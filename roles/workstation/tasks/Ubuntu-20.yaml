@@ -18,6 +18,11 @@
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
 
+- name: Install Neovim Unstable Repository
+  apt_repository:
+    repo: ppa:neovim-ppa/unstable
+    state: present
+
 - name: Check if Mirantis Lens is installed
   stat:
     path: /usr/bin/lens
