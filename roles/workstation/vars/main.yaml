@@ -1,4 +1,5 @@
 packages:
+- fastboot
 - adb
 - firefox
 - cockpit
