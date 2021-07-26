@@ -1,4 +1,5 @@
 packages:
+- barrier
 - firefox
 - cockpit
 - git
@@ -49,6 +50,7 @@ homebrew_packages:
 - tree
 - android-platform-tools
 homebrew_cask_packages:
+- barrier
 - firefox
 - anaconda
 - discord
