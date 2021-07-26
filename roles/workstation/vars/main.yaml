@@ -1,5 +1,7 @@
 packages:
 - barrier
+- fastboot
+- adb
 - firefox
 - cockpit
 - git
@@ -24,6 +26,10 @@ packages:
 - terraform
 - tmux
 - tree
+- npm
+- nodejs
+- transmission-gtk
+- transmission-cli
 homebrew_packages:
 - derailed/k9s/k9s
 - node
