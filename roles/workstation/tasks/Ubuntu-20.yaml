@@ -43,6 +43,16 @@
     deb: "{{ mattermost_url }}"
   when: not stat_mattermost.stat.exists
 
+- name: Check if Obsidian is installed
+  stat:
+    path: /usr/bin/obsidian
+  register: stat_obsidian
+
+- name: Install Obsidian
+  apt:
+    deb: "{{ obsidian_url }}"
+  when: not stat_obsidian.stat.exists
+
 - name: Install Packages
   package:
     name: "{{ item }}"
