@@ -1,4 +1,5 @@
 packages:
+- tilda
 - gnome-tweaks
 - barrier
 - fastboot
