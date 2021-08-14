@@ -1,5 +1,8 @@
 ---
 - hosts: localhost
+  pre_tasks:
+    - include_vars:
+        file: 'host_vars/{{ ansible_hostname }}.yaml'
   vars:
     user: test
   roles:

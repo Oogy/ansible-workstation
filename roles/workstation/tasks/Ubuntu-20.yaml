@@ -3,10 +3,19 @@
     src: templates/crontab.j2
     dest: /etc/crontab
 
+- include_vars:
+    file: 'host_vars/{{ ansible_hostname }}.yaml'
+
 - name: Install Role Dependencies
   package:
     name: gnupg2
     state: present
+
+- name: SSH Authorized Keys from Github
+  ansible.posix.authorized_key:
+    user: '{{ workstation_user }}'
+    state: present
+    key: '{{ ssh_authorized_keys_url }}'
 
 - name: Add Hashicorp APT Key
   apt_key:

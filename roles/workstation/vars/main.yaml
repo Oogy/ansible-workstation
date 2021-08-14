@@ -84,3 +84,5 @@ mattermost_version: "4.7.0"
 mattermost_url: "https://releases.mattermost.com/desktop/4.7.0/mattermost-desktop-{{ mattermost_version }}-linux-amd64.deb"
 obsidian_version: "0.9.20"
 obsidian_url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v0.9.20/obsidian_{{ obsidian_version }}_amd64.deb"
+ssh_authorized_keys_url: "https://github.com/oogy.keys"
+
