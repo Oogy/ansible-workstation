@@ -62,6 +62,12 @@
     deb: "{{ obsidian_url }}"
   when: not stat_obsidian.stat.exists
 
+- name: Install Slack Nebula
+  ansible.builtin.unarchive:
+    src: "{{ nebula_url }}"
+    dest: /usr/local/bin
+    remote_src: yes
+
 - name: Install Packages
   package:
     name: "{{ item }}"
