@@ -1,4 +1,5 @@
 packages:
+- apache2-utils
 - tilda
 - gnome-tweaks
 - barrier
