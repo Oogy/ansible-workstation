@@ -74,6 +74,12 @@
     state: present
   with_items: "{{ packages }}"
 
+- name: Install Doom Emacs
+  ansible.builtin.git:
+    repo: https://github.com/hlissner/doom-emacs
+    dest: "/home/{{ workstation_user }}/.emacs.d"
+    depth: 1 
+
 - name: Ubuntu 20.x Virtualization Host
   block:
     - name: Install Vagrant
