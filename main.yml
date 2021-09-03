@@ -3,8 +3,13 @@
   pre_tasks:
     - include_vars:
         file: 'host_vars/{{ ansible_hostname }}.yaml'
+      tags: 
+        - k0s
   vars:
     user: test
   roles:
     - role: workstation
-#    - role: syncthing
+    - role: k0s
+      when: k0s_enabled|bool == true
+      tags: 
+        - k0s

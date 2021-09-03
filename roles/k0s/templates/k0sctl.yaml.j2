@@ -1,0 +1,39 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: {{ k0s_cluster_name }}
+spec:
+  hosts:
+    - localhost:
+        enabled: true
+      role: "controller+worker"
+      ssh:
+        address: 127.0.0.1
+        port: 22
+  k0s:
+    version: {{ k0s_cluster_version }}
+    config:
+      apiVersion: k0s.k0sproject.io/v1beta1
+      kind: Cluster
+      metadata:
+        name: {{ k0s_cluster_name }}
+      spec:
+        telemetry:
+          enabled: false
+        extensions:
+          helm:
+            repositories: 
+              {% for repo in k0s_helm_repositories -%}
+                {{ '- name:' }} {{ repo.name }}
+                {{ 'url:' }} {{ repo.url }}
+              {% endfor %}
+  
+            charts: 
+              {% for chart in k0s_helm_charts -%}
+                {{ '- name:' }} {{ chart.name }}
+                {{ 'chartname:' }} {{ chart.chartname}}
+                {{ 'version:'}} {{ chart.version }}
+                {{ 'namespace:' }} {{ chart.namespace }}
+              {% endfor %}
+
+

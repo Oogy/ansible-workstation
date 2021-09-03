@@ -1,0 +1,12 @@
+- name: Create K0sctl config dir
+  file:
+    name: "{{ k0sctl_config_dir }}"
+    state: directory
+
+- name: Template K0s Cluster Configuration
+  template:
+    src: templates/k0sctl.yaml.j2
+    dest: "{{ k0sctl_config_dir }}/k0sctl.yaml"
+  register: k0sctl_config
+
+  
