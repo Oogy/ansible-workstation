@@ -2,7 +2,6 @@ packages:
 - polybar
 - fdclone
 - ripgrep
-- emacs27
 - apache2-utils
 - tilda
 - gnome-tweaks
