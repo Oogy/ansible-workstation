@@ -32,6 +32,11 @@
     repo: ppa:neovim-ppa/unstable
     state: present
 
+- name: Install kellyk PPA for Emacs
+  apt_repository:
+    repo: ppa:neovim-ppa/unstable
+    state: present
+
 - name: Check if Mirantis Lens is installed
   stat:
     path: /usr/bin/lens
