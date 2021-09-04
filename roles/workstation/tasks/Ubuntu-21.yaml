@@ -32,11 +32,6 @@
     repo: ppa:neovim-ppa/unstable
     state: present
 
-- name: Install kellyk repository for Emacs27
-  apt_repository:
-    repo: ppa:neovim-ppa/unstable
-    state: present
-
 - name: Check if Mirantis Lens is installed
   stat:
     path: /usr/bin/lens
@@ -97,7 +92,7 @@
     dest: /usr/local/bin
     mode: '0755'
 
-- name: Ubuntu 20.x Virtualization Host
+- name: Ubuntu 21.x Virtualization Host
   block:
     - name: Install Vagrant
       package:
