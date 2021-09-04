@@ -86,6 +86,12 @@
     dest: /usr/local/bin/k0sctl
     mode: '0755'
 
+- name: Add Custom Scripts and Bins
+  ansible.builtin.copy:
+    src: files/bin/
+    dest: /usr/local/bin
+    mode: '0755'
+
 - name: Ubuntu 20.x Virtualization Host
   block:
     - name: Install Vagrant

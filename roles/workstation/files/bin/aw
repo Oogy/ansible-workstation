@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+flock -n /tmp/ansible.lock -c "ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log /usr/local/bin/ansible-pull -i localhost -c local -U https://github.com/oogy/ansible-workstation.git main.yml"
