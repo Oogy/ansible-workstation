@@ -28,7 +28,6 @@ packages:
 - s3cmd
 - syncthing
 - syncthing-discosrv
-- syncthing-gtk
 - syncthing-relaysrv
 - terraform
 - tmux
