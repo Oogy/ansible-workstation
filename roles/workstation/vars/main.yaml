@@ -1,4 +1,5 @@
 packages:
+- acpi
 - fonts-firacode
 - build-essential
 - curl
