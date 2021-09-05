@@ -111,6 +111,8 @@
   ansible.builtin.file:
     name: /home/{{ workstation_user }}/.config/nvim
     state: directory
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Install Packages
   package:
