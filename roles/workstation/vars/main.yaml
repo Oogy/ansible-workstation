@@ -1,4 +1,6 @@
 packages:
+- i3
+- xbacklight
 - acpi
 - fonts-firacode
 - build-essential
