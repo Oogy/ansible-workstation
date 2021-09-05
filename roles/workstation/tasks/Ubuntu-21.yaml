@@ -76,12 +76,17 @@
 
 - name: Install Doom Emacs
   ansible.builtin.git:
+  become: yes
+  become_user: {{ workstation_user }}
     repo: https://github.com/hlissner/doom-emacs
     dest: "/home/{{ workstation_user }}/.emacs.d"
-    depth: 1 
+    depth: 1
+     
 
 - name: Install Doom Nvim
   ansible.builtin.git:
+  become: yes
+  become_user: {{ workstation_user }}
     repo: https://github.com/NTBBloodbath/doom-nvim
     dest: "/home/{{ workstation_user }}/.config/nvim"
     depth: 1
