@@ -92,6 +92,17 @@
     dest: /usr/local/bin
     mode: '0755'
 
+- name: Create Polybar config directory
+  ansible.builtin.file:
+    name: /home/{{ workstation_user }}/.config/polybar
+    state: directory
+
+- name: Write Polybar Configuration
+  ansible.builtin.copy:
+    src: files/polybar-config
+    dest: /home/{{ workstation_user }}/.config/polybar/config
+    mode: '0755'
+
 - name: Ubuntu 21.x Virtualization Host
   block:
     - name: Install Vagrant
