@@ -68,20 +68,6 @@
     dest: /usr/local/bin
     remote_src: yes
 
-- name: Install Packages
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ packages }}"
-
-- name: Install Doom Emacs
-  ansible.builtin.git:
-    repo: https://github.com/hlissner/doom-emacs
-    dest: "/home/{{ workstation_user }}/.emacs.d"
-    depth: 1
-  become: yes
-  become_user: "{{ workstation_user }}"
-
 - name: Install Doom Nvim
   ansible.builtin.git:
     repo: https://github.com/NTBBloodbath/doom-nvim
@@ -112,6 +98,12 @@
     src: files/polybar-config
     dest: /home/{{ workstation_user }}/.config/polybar/config
     mode: '0755'
+
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
 
 - name: Ubuntu 21.x Virtualization Host
   block:
