@@ -80,6 +80,12 @@
     dest: "/home/{{ workstation_user }}/.emacs.d"
     depth: 1 
 
+- name: Install Doom Nvim
+  ansible.builtin.git:
+    repo: https://github.com/NTBBloodbath/doom-nvim
+    dest: "/home/{{ workstation_user }}/.config/nvim"
+    depth: 1
+
 - name: Install K0sctl
   ansible.builtin.get_url:
     url: "{{ k0sctl_url }}"
