@@ -68,6 +68,11 @@
     dest: /usr/local/bin
     remote_src: yes
 
+- name: Check if Doom Nvim is Cloned
+  stat:
+    path: "/home/{{ workstation_user }}/.config/nvim"
+  register: stat_doom_nvim
+
 - name: Install Doom Nvim
   ansible.builtin.git:
     repo: https://github.com/NTBBloodbath/doom-nvim
@@ -75,6 +80,15 @@
     depth: 1
   become: yes
   become_user: "{{ workstation_user }}"
+  when: not stat_doom_nvim.stat.exists
+
+- name: Write Doom Nvim Config
+  ansible.builtin.copy:
+    src: files/doomrc.lua
+    dest: "/home/{{ workstation_user }}/.config/nvim/doomrc.lua"
+    mode: '0664'
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Install K0sctl
   ansible.builtin.get_url:
