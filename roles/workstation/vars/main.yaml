@@ -1,4 +1,5 @@
 packages:
+- fonts-firacode
 - build-essential
 - curl
 - libffi-dev
