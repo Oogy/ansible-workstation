@@ -99,6 +99,17 @@
     dest: /home/{{ workstation_user }}/.config/polybar/config
     mode: '0755'
 
+- name: Create Hermit Font Directory
+  ansible.builtin.file:
+    name: /usr/share/fonts/opentype/hermit/
+    state: directory
+
+- name: Install Hermit Font
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hermit.zip
+    dest: /usr/share/fonts/opentype/hermit/
+    remote_src: yes
+
 - name: Install Packages
   package:
     name: "{{ item }}"
