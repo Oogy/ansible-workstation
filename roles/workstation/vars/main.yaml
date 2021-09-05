@@ -1,4 +1,5 @@
 packages:
+- xclip
 - fonts-font-awesome
 - i3
 - xbacklight
