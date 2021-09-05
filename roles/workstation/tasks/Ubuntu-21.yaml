@@ -90,6 +90,11 @@
     owner: "{{ workstation_user }}"
     group: "{{ workstation_user }}"
 
+- name: Install Tree-Sitter-CLI for Nvim
+  community.general.npm:
+    name: tree-sitter-cli
+    global: yes
+
 - name: Install K0sctl
   ansible.builtin.get_url:
     url: "{{ k0sctl_url }}"
