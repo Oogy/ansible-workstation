@@ -3,8 +3,8 @@
   pre_tasks:
     - include_vars:
         file: 'host_vars/{{ ansible_hostname }}.yaml'
-      tags: 
-        - k0s
+      tags:
+        - all
   vars:
     user: test
   roles:

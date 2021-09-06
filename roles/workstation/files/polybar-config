@@ -62,10 +62,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Fira Code:size=12"
+font-0 = "Hurmit Nerd Font Mono:size=12;3"
+font-1 = "Hurmit Nerd Font Mono:size=18;3"
 
 modules-left = i3
-modules-right = date 
+modules-right = battery
+modules-center = date
 
 tray-position = right
 tray-padding = 2
@@ -110,16 +112,23 @@ label-urgent-padding = 2
 type = internal/date
 interval = 5
 
-date =
-date-alt = " %Y-%m-%d"
+date = "%Y-%m-%d"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = %H:%M:%S
 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
 label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+
+label-charging = %{T2}%{T-} %percentage%%
+label-discharging = %{T2}%{T-} %percentage%%
 
 [settings]
 screenchange-reload = true
