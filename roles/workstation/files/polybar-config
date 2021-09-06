@@ -124,11 +124,23 @@ label = %date% %time%
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = ADP1
+adapter = AC
 poll-interval = 5
+full-at = 95
+ 
+label-charging = %{F#33bbff}%{T2}%{T- F-} %percentage%%
+format-charging = <label-charging>
 
-label-charging = %{T2}%{T-} %percentage%%
-label-discharging = %{T2}%{T-} %percentage%%
+label-full = %{F#76d521}%{T2}%{T-}%{F-} %percentage%%
+
+ramp-capacity-0 = %{F#fa4b20}%{T2}%{t-}%{f-}
+ramp-capacity-1 = %{F#f24d24}%{T2}%{t-}%{f-}
+ramp-capacity-2 = %{F#f2ba24}%{T2}%{t-}%{f-}
+ramp-capacity-3 = %{F#afd521}%{T2}%{T-}%{F-}
+ramp-capacity-4 = %{F#76d521}%{T2}%{T-}%{F-}
+
+label-discharging = %percentage%%
+format-discharging = <ramp-capacity> <label-discharging>
 
 [settings]
 screenchange-reload = true
