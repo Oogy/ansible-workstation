@@ -32,11 +32,6 @@
     repo: ppa:neovim-ppa/unstable
     state: present
 
-- name: Install kellyk repository for Emacs27
-  apt_repository:
-    repo: ppa:neovim-ppa/unstable
-    state: present
-
 - name: Check if Mirantis Lens is installed
   stat:
     path: /usr/bin/lens
@@ -73,17 +68,32 @@
     dest: /usr/local/bin
     remote_src: yes
 
-- name: Install Packages
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ packages }}"
+- name: Install Tree-Sitter-CLI for Nvim
+  community.general.npm:
+    name: tree-sitter-cli
+    global: yes
 
-- name: Install Doom Emacs
+- name: Check if Doom Nvim is Cloned
+  stat:
+    path: "/home/{{ workstation_user }}/.config/nvim"
+  register: stat_doom_nvim
+
+- name: Install Doom Nvim
   ansible.builtin.git:
-    repo: https://github.com/hlissner/doom-emacs
-    dest: "/home/{{ workstation_user }}/.emacs.d"
-    depth: 1 
+    repo: https://github.com/NTBBloodbath/doom-nvim
+    dest: "/home/{{ workstation_user }}/.config/nvim"
+    depth: 1
+  become: yes
+  become_user: "{{ workstation_user }}"
+  when: not stat_doom_nvim.stat.exists
+
+- name: Write Doom Nvim Config
+  ansible.builtin.copy:
+    src: files/doomrc.lua
+    dest: "/home/{{ workstation_user }}/.config/nvim/doomrc.lua"
+    mode: '0664'
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Install K0sctl
   ansible.builtin.get_url:
@@ -97,7 +107,42 @@
     dest: /usr/local/bin
     mode: '0755'
 
-- name: Ubuntu 20.x Virtualization Host
+- name: Create Polybar config directory
+  ansible.builtin.file:
+    name: /home/{{ workstation_user }}/.config/polybar
+    state: directory
+
+- name: Write Polybar Configuration
+  ansible.builtin.copy:
+    src: files/polybar-config
+    dest: /home/{{ workstation_user }}/.config/polybar/config
+    mode: '0755'
+
+- name: Create Hermit Font Directory
+  ansible.builtin.file:
+    name: /usr/share/fonts/opentype/hermit/
+    state: directory
+
+- name: Install Hermit Font
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hermit.zip
+    dest: /usr/share/fonts/opentype/hermit/
+    remote_src: yes
+
+- name: Create Neovim config dir
+  ansible.builtin.file:
+    name: /home/{{ workstation_user }}/.config/nvim
+    state: directory
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
+
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
+
+- name: Ubuntu 21.x Virtualization Host
   block:
     - name: Install Vagrant
       package:

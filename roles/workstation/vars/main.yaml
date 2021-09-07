@@ -1,9 +1,23 @@
 packages:
 - terminator
+- xclip
+- fonts-font-awesome
+- i3
+- xbacklight
+- acpi
+- fonts-firacode
+- build-essential
+- curl
+- libffi-dev
+- libffi8ubuntu1
+- libgmp-dev
+- libgmp10
+- libncurses-dev
+- libncurses5
+- libtinfo5
 - polybar
 - fdclone
 - ripgrep
-- emacs27
 - apache2-utils
 - tilda
 - gnome-tweaks
@@ -29,7 +43,6 @@ packages:
 - s3cmd
 - syncthing
 - syncthing-discosrv
-- syncthing-gtk
 - syncthing-relaysrv
 - terraform
 - tmux
