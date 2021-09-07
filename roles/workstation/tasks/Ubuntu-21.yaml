@@ -95,6 +95,24 @@
     owner: "{{ workstation_user }}"
     group: "{{ workstation_user }}"
 
+- name: Check if i3wm config dir exists
+  stat:
+    path: "/home/{{ workstation_user }}/.config/i3"
+  register: stat_i3_config_dir
+
+- name: Create i3wm config dir
+  ansible.builtin.file:
+    name: "/home/{{ workstation_user }}/.config/i3"
+    state: directory
+
+- name: Write i3wm Config
+  ansible.builtin.copy:
+    src: files/i3-config
+    dest: "/home/{{ workstation_user }}/.config/i3/config"
+    mode: '0664'
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
+
 - name: Install K0sctl
   ansible.builtin.get_url:
     url: "{{ k0sctl_url }}"
