@@ -1,4 +1,5 @@
 packages:
+- rofi
 - gpick
 - kitty
 - feh
