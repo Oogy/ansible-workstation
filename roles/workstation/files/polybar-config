@@ -65,16 +65,13 @@ module-margin-right = 1
 font-0 = "Hurmit Nerd Font Mono:size=12;3"
 font-1 = "Hurmit Nerd Font Mono:size=21;4"
 
-modules-left = i3 date
+modules-left = i3 date 
 modules-right = cpu memory filesystem wireless-network alsa backlight battery
 
-tray-position = right
-tray-padding = 2
+tray-position = none
 
 cursor-click = pointer
 cursor-scroll = ns-resize
-
-bottom = true
 
 [module/xwindow]
 type = internal/xwindow
