@@ -124,6 +124,24 @@
     owner: "{{ workstation_user }}"
     group: "{{ workstation_user }}"
 
+- name: Check if kitty config dir exists
+  stat:
+    path: "/home/{{ workstation_user }}/.config/kitty"
+  register: stat_kitty_config_dir
+
+- name: Create kitty config dir
+  ansible.builtin.file:
+    name: "/home/{{ workstation_user }}/.config/kitty"
+    state: directory
+
+- name: Write kitty Config
+  ansible.builtin.copy:
+    src: files/kitty-config
+    dest: "/home/{{ workstation_user }}/.config/kitty/kitty.conf"
+    mode: '0644'
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
+
 - name: Install K0sctl
   ansible.builtin.get_url:
     url: "{{ k0sctl_url }}"
