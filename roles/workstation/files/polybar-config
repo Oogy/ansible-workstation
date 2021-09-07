@@ -40,34 +40,33 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/hud]
-
 width = 100%
-height = 27
+height = 32
 
-radius = 6.0
+separator = | 
+radius = 0.0
 fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 6
 line-color = #f00
 
-border-size = 4
+border-size = 0 
 border-color = #00000000
 
-padding-left = 0
-padding-right = 2
+padding-left = 1
+padding-right = 1 
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1 
 
 font-0 = "Hurmit Nerd Font Mono:size=12;3"
-font-1 = "Hurmit Nerd Font Mono:size=18;3"
+font-1 = "Hurmit Nerd Font Mono:size=21;4"
 
-modules-left = i3
-modules-right = wireless-network alsa battery
-modules-center = date
+modules-left = i3 date
+modules-right = cpu memory filesystem wireless-network alsa backlight battery
 
 tray-position = right
 tray-padding = 2
@@ -117,9 +116,27 @@ date = "%Y-%m-%d"
 time = %H:%M:%S
 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
 
 label = %date% %time%
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+; (unreleased)
+; Use the `/sys/class/backlight/actual-brightness` file
+; rather than the regular `brightness` file.
+; Defaults to true unless the specified card is an amdgpu backlight.
+use-actual-brightness = true
+format = <label><bar>
+label = %{T2}%{T-}
+bar-width = 10
+bar-indicator = 
+bar-fill =▐
+bar-empty = -
 
 [module/battery]
 type = internal/battery
@@ -141,7 +158,7 @@ ramp-capacity-4 = %{F#76d521}%{T2}%{T-}%{F-}
 
 label-discharging = %percentage%%
 format-discharging = <ramp-capacity> <label-discharging>
-format-underline = #f33d20
+
 [module/alsa]
 type = internal/alsa
 master-soundcard = default
@@ -157,12 +174,12 @@ format-volume = <ramp-volume> <label-volume>
 
 [module/wired-network]
 type = internal/network
-interface = enp0s25
+interface = ${env:ETHERNET_NIC}
 interval = 1.0
 
 [module/wireless-network]
 type = internal/network
-interface = wlp3s0
+interface = ${env:WIRELESS_NIC}
 interval = 1.0
 
 ramp-signal-0 = %{F#f33d20}%{T2}%{T-}%{F-}
@@ -173,11 +190,68 @@ ramp-signal-4 = %{F#45c61b}%{T2}%{T-}%{F-}
 ramp-signal-5 = %{F#45c61b}%{T2}%{T-}%{F-}
 
 label-connected = %essid% %downspeed:9%
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal><label-connected>
 
 label-disconnected = %{T2}%{T-}
 label-disconnected-foreground = #f33d20
 format-disconnected = <label-disconnected>
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+
+interval = 20
+
+fixed-values = true
+
+label-mounted = %mountpoint%: 
+format-mounted = <label-mounted><bar-used>
+
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+[module/memory]
+type = internal/memory
+interval = 3
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+label = %{T2}%{T-}
+format = <label><bar-used>
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+format = <label> <ramp-coreload>
+label = %{T2}龍%{T-}
+ramp-coreload-spacing = 1.0
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
 
 [settings]
 screenchange-reload = true

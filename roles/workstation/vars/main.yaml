@@ -1,4 +1,5 @@
 packages:
+- wireguard-tools
 - terminator
 - xclip
 - fonts-font-awesome
