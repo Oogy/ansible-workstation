@@ -96,6 +96,8 @@ homebrew_cask_packages:
 - vlc
 - vmware-fusion
 - lens
+aw_config_dir_path: "/home/{{ workstation_user }}/.config/aw"
+aw_wallpapers_dir_path: "{{ aw_config_dir_path }}/wallpapers"
 vmware_workstation_version: "16.1.2-17966106"
 vmware_workstation_url: "https://download3.vmware.com/software/player/file/VMware-Player-{{ vars.vmware_workstation_version }}.x86_64.bundle"
 vmware_workstation_download_directory: /tmp/vmware

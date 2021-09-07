@@ -17,6 +17,17 @@
     state: present
     key: '{{ ssh_authorized_keys_url }}'
 
+- name: Check if aw(ansible-workstation) dir exists
+  stat:
+    path: "{{ aw_config_dir_path }}"
+  register: stat_aw_config_dir
+
+- name: Create aw config dir
+  ansible.builtin.file:
+    name: "/home/{{ workstation_user }}/.config/aw"
+    state: directory
+  when: not stat_aw_config_dir.stat.exists
+
 - name: Add Hashicorp APT Key
   apt_key:
     url: https://apt.releases.hashicorp.com/gpg
@@ -153,6 +164,23 @@
     state: directory
     owner: "{{ workstation_user }}"
     group: "{{ workstation_user }}"
+
+- name: Check if aw wallpapers dir exists
+  stat:
+    path: "{{ aw_wallpapers_dir_path }}"
+  register: stat_aw_wallpapers_dir
+
+- name: Create aw wallpapers dir
+  ansible.builtin.file:
+    name: "{{ aw_wallpapers_dir_path }}"
+    state: directory
+  when: not stat_aw_wallpapers_dir.stat.exists
+
+- name: Add aw wallpapers
+  ansible.builtin.copy:
+    src: files/wallpapers/
+    dest: "{{ aw_wallpapers_dir_path }}"
+    mode: '0755'
 
 - name: Install Packages
   package:

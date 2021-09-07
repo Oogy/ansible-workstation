@@ -1,0 +1,2 @@
+#!/bin/env bash
+export WALLPAPERS_DIR=~/.config/aw/wallpapers
