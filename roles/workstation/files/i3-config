@@ -176,3 +176,4 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 exec_always --no-startup-id /usr/local/bin/launch-polybar ~/.config/polybar/config
+exec_always --no-startup-id /usr/local/bin/fehbg red-forest-0.jpg
