@@ -62,7 +62,7 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1 
 
-font-0 = "Hurmit Nerd Font Mono:size=12;3"
+font-0 = "Hurmit Nerd Font Mono:size=10;3"
 font-1 = "Hurmit Nerd Font Mono:size=21;4"
 
 modules-left = i3 date 
@@ -143,9 +143,9 @@ format-charging = <label-charging>
 
 label-full = %{F#76d521}%{T2}%{T-}%{F-} %percentage%%
 
-ramp-capacity-0 = %{F#fa4b20}%{T2}%{t-}%{f-}
-ramp-capacity-1 = %{F#f24d24}%{T2}%{t-}%{f-}
-ramp-capacity-2 = %{F#f2ba24}%{T2}%{t-}%{f-}
+ramp-capacity-0 = %{F#fa4b20}%{T2}%{T-}%{F-}
+ramp-capacity-1 = %{F#f24d24}%{T2}%{T-}%{F-}
+ramp-capacity-2 = %{F#f2ba24}%{T2}%{T-}%{F-}
 ramp-capacity-3 = %{F#afd521}%{T2}%{T-}%{F-}
 ramp-capacity-4 = %{F#76d521}%{T2}%{T-}%{F-}
 
