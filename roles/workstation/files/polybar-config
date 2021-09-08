@@ -66,7 +66,7 @@ font-0 = "Hurmit Nerd Font Mono:size=10;3"
 font-1 = "Hurmit Nerd Font Mono:size=21;4"
 
 modules-left = i3 date 
-modules-right = cpu memory filesystem wireless-network alsa backlight battery
+modules-right = cpu memory filesystem wireless-network pulseaudio backlight battery
 
 tray-position = none
 
@@ -152,18 +152,20 @@ ramp-capacity-4 = %{F#76d521}%{T2}%{T-}%{F-}
 label-discharging = %percentage%%
 format-discharging = <ramp-capacity> <label-discharging>
 
-[module/alsa]
-type = internal/alsa
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+use-ui-max = true
+interval = 5
 
-label-muted = %{T2}婢%{T-}
+label-muted = %{T2}%{F#961e12}婢%{F-}%{T-}
 ramp-volume-0 = 奄
 ramp-volume-1 = %{T2}奔%{T-}
 ramp-volume-2 = %{T2}墳%{T-}
 label-volume = %percentage%%
 format-volume = <ramp-volume> <label-volume>
+
+click-right = pavucontrol
 
 [module/wired-network]
 type = internal/network
