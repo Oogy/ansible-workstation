@@ -179,7 +179,7 @@ exec_always --no-startup-id /usr/local/bin/launch-polybar ~/.config/polybar/conf
 exec_always --no-startup-id /usr/local/bin/fehbg red-forest-0.jpg
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #000000 #961e12 #282828 #b85a43   #b48864
+client.focused          #000000 #961e12 #000000 #b85a43   #b48864
 client.focused_inactive #333333 #84b843 #000000 #a1b843   #b48864
 client.unfocused        #000000 #b85a43 #000000 #961e12   #b48864
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
