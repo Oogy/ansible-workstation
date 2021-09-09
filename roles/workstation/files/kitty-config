@@ -1,6 +1,7 @@
 update_check_interval 0
-# gruvbox-dark colorscheme for kitty
-# snazzy theme used as base
+
+font_family Hurmit Nerd Font Mono
+font_size 12.0
 
 foreground            #ebdbb2
 background            #282828
