@@ -161,7 +161,7 @@
 
 - name: Write Polybar Configuration
   ansible.builtin.copy:
-    src: files/polybar-config
+    src: files/polybar/config
     dest: /home/{{ workstation_user }}/.config/polybar/config
     mode: '0755'
 
