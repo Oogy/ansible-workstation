@@ -117,7 +117,7 @@ type = internal/backlight
 
 ; Use the following command to list available cards:
 ; $ ls -1 /sys/class/backlight/
-card = intel_backlight
+card = ${env:BACKLIGHT_CARD}
 
 ; (unreleased)
 ; Use the `/sys/class/backlight/actual-brightness` file

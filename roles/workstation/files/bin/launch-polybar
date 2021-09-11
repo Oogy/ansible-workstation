@@ -2,17 +2,38 @@
 export POLYBAR_CONFIG=$1
 export WIRELESS_NIC=$(ip -j link | jq -r '.[].ifname' | grep wlp | head -n 1)
 export ETHERNET_NIC=$(ip -j link | jq -r '.[].ifname' | grep enp | head -n 1)
+export DEVICE=$(inxi -M --output-file print --output json | jq -r '."000#1#0#Machine"[0]."003#0#2#v"')
 
-echo "+ Killing existing instances of polybar..."
-killall -q polybar
+backlight_card(){
+    case $DEVICE in
+        "ThinkPad X230")
+            export BACKLIGHT_CARD="acpi_video0"
+            ;;
+        *)
+            export BACKLIGHT_CARD="intel_backlight"
+            ;;
+    esac
+}
 
-echo "+ Settings:"
-echo "+ Current Directory: $(pwd)"
-echo "+ Configuration: ${POLYBAR_CONFIG}"
-echo "+ Wireless NIC: ${WIRELESS_NIC}"
-echo "+ Ethernet NIC: ${ETHERNET_NIC}"
+launch_polybar(){
+    echo "+ Killing existing instances of polybar..."
+	killall -q polybar
+	
+	echo "+ Settings:"
+	echo "+ Current Directory: $(pwd)"
+	echo "+ Configuration path: ${POLYBAR_CONFIG}"
+	echo "+ Device: ${DEVICE}"
+	echo "+ Backlight Card: ${BACKLIGHT_CARD}"
+	echo "+ Wireless NIC: ${WIRELESS_NIC}"
+	echo "+ Ethernet NIC: ${ETHERNET_NIC}"
+	
+	echo "+ Starting Polybar with Settings..."
+	polybar hud -c $POLYBAR_CONFIG & disown
+}
 
-echo "+ Starting Polybar with Settings..."
-polybar hud -c $POLYBAR_CONFIG & disown
+main(){
+    backlight_card
+    launch_polybar
+}
 
-
+main
