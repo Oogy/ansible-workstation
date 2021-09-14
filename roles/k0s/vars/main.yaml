@@ -1,1 +1,4 @@
 k0sctl_config_dir: /etc/k0sctl
+k0s_dummy_nic: kube_dummy
+k0s_dummy_ip: 192.168.77.1
+
