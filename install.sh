@@ -26,7 +26,7 @@ linux_dependencies(){
     echo "+ Setting Ansible Vault Password"
     read -s -p "Enter Ansible Vault Password: " VAULT_PASSWORD
     echo ${VAULT_PASSWORD} > ${AW_CONFIG_DIR}/vault-password.conf
-    chmod 0700 $AW_CONFIG_DIR/vault-password.conf
+    chmod 0700 $AW_CONFIG_DIR/vault-password
 }
 
 mac_dependencies(){
