@@ -10,6 +10,6 @@ MAILTO=root
 # |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
 # |  |  |  |  |
 # *  *  *  *  * user-name  command to be executed
-  */5  *  *  *  * root flock -n /tmp/ansible.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/aw/vault-password /usr/local/bin/ansible-pull --vault-password-file -i localhost -c local -U https://github.com/oogy/ansible-workstation.git main.yml"
-  @reboot	root flock -n /tmp/ansible.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/aw/vault-password /usr/local/bin/ansible-pull --vault-password-file -i localhost -c local -U https://github.com/oogy/ansible-workstation.git main.yml"   
+#  */5  *  *  *  * root flock -n /tmp/ansible.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/aw/vault-password /usr/local/bin/ansible-pull --vault-password-file -i localhost -c local -U https://github.com/oogy/ansible-workstation.git main.yml"
+#  @reboot	root flock -n /tmp/ansible.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/aw/vault-password /usr/local/bin/ansible-pull --vault-password-file -i localhost -c local -U https://github.com/oogy/ansible-workstation.git main.yml"   
 
