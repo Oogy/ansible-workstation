@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-flock -n /tmp/ansible.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/aw/vault-password.conf /usr/local/bin/ansible-pull -i localhost -c local -U https://github.com/oogy/ansible-workstation.git main.yml"
+flock -n /tmp/ansible.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/aw/vault-password /usr/local/bin/ansible-pull -i localhost -c local -U https://github.com/oogy/ansible-workstation.git main.yml"
 
