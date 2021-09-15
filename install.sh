@@ -2,6 +2,7 @@
 set -euxo pipefail
 
 ANSIBLE_URL="https://github.com/Oogy/ansible-workstation.git"
+AW_CONFIG_DIR="/opt/aw"
 
 os_family(){
   uname -s
@@ -9,21 +10,27 @@ os_family(){
 
 safe_apt(){
 	while fuser /var/{lib/{dpkg,apt/lists},cache/apt/archives}/lock >/dev/null 2>&1 ; do
-		echo "Waiting for apt lock..."
+		echo "+ Waiting for apt lock..."
 		sleep 1
 	done
 	apt "$@"
 }
 
 linux_dependencies(){
-    echo "doing linux things"
+    echo "+ doing linux things"
 	safe_apt -y update
 	safe_apt -y install python3-pip git
     pip3 install ansible
+    echo "+ creating aw config dir"
+    sudo mkdir -p ${AW_CONFIG_DIR}
+    echo "+ Setting Ansible Vault Password"
+    read -s -p "Enter Ansible Vault Password: " VAULT_PASSWORD
+    echo ${VAULT_PASSWORD} > ${AW_CONFIG_DIR}/vault-password.conf
+    chmod 0700 $AW_CONFIG_DIR/vault-password.conf
 }
 
 mac_dependencies(){
-    echo "doing mac things"
+    echo "+ doing mac things"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew install python git
     python -m pip install ansible
@@ -41,7 +48,14 @@ dependencies(){
 }
 
 install(){
-	ansible-pull -i localhost -U ${ANSIBLE_URL} main.yml
+    case $(os_family) in
+        Linux)
+	        sudo ansible-pull -i localhost -U ${ANSIBLE_URL} main.yml
+            ;;
+        Darwin)
+            ansible-pull -i localhost -U ${ANSIBLE_URL} main.yml
+            ;;
+    esac
 }
 
 main(){
