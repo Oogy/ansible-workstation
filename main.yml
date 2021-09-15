@@ -3,11 +3,9 @@
   pre_tasks:
     - include_vars:
         file: 'host_vars/{{ ansible_hostname }}.yaml'
-      tags:
-        - all
   roles:
     - role: workstation
     - role: k0s
-      when: k0s_enabled|bool == true
-      tags: 
-        - k0s
+      when: k0s.enabled
+    - role: wireguard
+      when: wireguard.enabled
