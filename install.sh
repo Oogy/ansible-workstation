@@ -25,7 +25,7 @@ linux_dependencies(){
     sudo mkdir -p ${AW_CONFIG_DIR}
     echo "+ Setting Ansible Vault Password"
     read -s -p "Enter Ansible Vault Password: " VAULT_PASSWORD
-    echo ${VAULT_PASSWORD} > ${AW_CONFIG_DIR}/vault-password.conf
+    echo ${VAULT_PASSWORD} > ${AW_CONFIG_DIR}/vault-password
     chmod 0700 $AW_CONFIG_DIR/vault-password
 }
 
