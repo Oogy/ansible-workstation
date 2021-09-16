@@ -1,4 +1,5 @@
 packages:
+- sshuttle
 - rofi
 - gpick
 - kitty
