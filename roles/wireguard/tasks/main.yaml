@@ -5,18 +5,22 @@
   loop: "{{ wireguard.interfaces|flatten(levels=1) }}"
   loop_control:
     loop_var: interface
+    index_var: idx
   ignore_errors: True
   no_log: True
   register: wg_template
 
 - debug:
-    msg: '{{ wg_template.msg | regex_replace(interface.private_key) }}'
-  when: wg_template.results[index_var].failed
-
-- debug:
-    msg: '{{ wg_template.msg | regex_replace(interface.private_key) }}'
-  when: not wg_template.results[index_var].failed 
+    msg: '{{ wg_template.template_result[idx].msg | regex_replace(interface.private_key) }}'
+  loop: wg_template.results
+  loop_control:
+    loop_var: template_result
+    index_var: idx
 
 - fail:
     msg: "Error templating Wireguard Config"
-  when: wg_template.results[index_var].failed
+  when: wg_template.results[idx].failed
+  loop: wg_template.results
+  loop_control:
+    loop_var: template_result
+    index_var: idx
