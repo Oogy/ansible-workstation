@@ -10,13 +10,13 @@
   register: wg_template
 
 - debug:
-    msg: '{{ wg_template.stderr | regex_replace(interface.private_key) }}'
-  when: wg_template.stderr != ""
+    msg: '{{ wg_template.msg | regex_replace(interface.private_key) }}'
+  when: wg_template.failed
 
 - debug:
-    msg: '{{ wg_template.stout | regex_replace(interface.private_key) }}'
-  when: wg_template.stdout != ""
+    msg: '{{ wg_template.msg | regex_replace(interface.private_key) }}'
+  when: not wg_template.failed 
 
 - fail:
     msg: "Error templating Wireguard Config"
-  when: wg_template.stderr != ""
+  when: wg_template.failed
