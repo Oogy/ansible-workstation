@@ -11,12 +11,12 @@
 
 - debug:
     msg: '{{ wg_template.msg | regex_replace(interface.private_key) }}'
-  when: wg_template.failed
+  when: wg_template.results[index_var].failed
 
 - debug:
     msg: '{{ wg_template.msg | regex_replace(interface.private_key) }}'
-  when: not wg_template.failed 
+  when: not wg_template.results[index_var].failed 
 
 - fail:
     msg: "Error templating Wireguard Config"
-  when: wg_template.failed
+  when: wg_template.results[index_var].failed
