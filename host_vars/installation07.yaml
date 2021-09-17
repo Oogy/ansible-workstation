@@ -20,6 +20,7 @@ k0s:
         version: "3.17.6"
         namespace: "argocd"
 wireguard:
+  enabled: true
   interfaces:
     - name: wg0
       private_key: !vault |
