@@ -5,5 +5,4 @@
   loop: "{{ wireguard.interfaces|flatten(levels=1) }}"
   loop_control:
     loop_var: interface
-  no_log: True
 
