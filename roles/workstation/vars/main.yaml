@@ -1,4 +1,6 @@
 packages:
+- freecad
+- freecad-python3
 - sshuttle
 - rofi
 - gpick
