@@ -1,4 +1,5 @@
 packages:
+- keyutils
 - haskell-platform
 - freecad
 - freecad-python3

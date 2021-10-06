@@ -4,8 +4,8 @@
     - include_vars:
         file: 'host_vars/{{ ansible_hostname }}.yaml'
   roles:
+    - role: workstation
     - role: wireguard
       when: wireguard.enabled
-    - role: workstation
     - role: k0s
       when: k0s.enabled
