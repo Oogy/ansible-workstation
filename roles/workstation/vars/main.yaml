@@ -1,4 +1,5 @@
 packages:
+- libpam-u2f
 - qrencode
 - paperkey
 - dolphin
