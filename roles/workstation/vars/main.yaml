@@ -1,4 +1,5 @@
 packages:
+- dolphin
 - gnupg2
 - gnupg-agent
 - dirmngr
