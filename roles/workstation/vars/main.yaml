@@ -1,4 +1,14 @@
 packages:
+- wget
+- gnupg2
+- gnupg-agent
+- dirmngr
+- cryptsetup
+- scdaemon
+- pcscd
+- secure-delete
+- hopenpgp-tools
+- yubikey-personalization
 - scdaemon
 - pass
 - keyutils
