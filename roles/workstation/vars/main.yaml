@@ -1,6 +1,8 @@
 packages:
 - scdaemon
 - pass
+- keyutils
+- haskell-platform
 - freecad
 - freecad-python3
 - sshuttle
