@@ -1,4 +1,5 @@
 packages:
+- paperkey
 - dolphin
 - gnupg2
 - gnupg-agent
