@@ -1,4 +1,5 @@
 packages:
+- qrencode
 - paperkey
 - dolphin
 - gnupg2
