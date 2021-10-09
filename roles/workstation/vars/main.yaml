@@ -1,5 +1,4 @@
 packages:
-- wget
 - gnupg2
 - gnupg-agent
 - dirmngr
@@ -9,6 +8,7 @@ packages:
 - secure-delete
 - hopenpgp-tools
 - yubikey-personalization
+- yubikey-manager
 - scdaemon
 - pass
 - keyutils
