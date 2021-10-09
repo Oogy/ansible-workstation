@@ -1,4 +1,6 @@
 packages:
+- scdaemon
+- pass
 - freecad
 - freecad-python3
 - sshuttle
