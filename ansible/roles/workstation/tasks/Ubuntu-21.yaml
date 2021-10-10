@@ -2,7 +2,7 @@
   template:
     src: templates/crontab.j2
     dest: /etc/crontab
-  when: cron.enabled
+  when: cron.enabled == 'True'
 
 - name: Install Role Dependencies
   package:
