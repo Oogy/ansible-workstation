@@ -1,4 +1,5 @@
 packages:
+- libsecret-tools
 - keepassxc
 - libpam-u2f
 - qrencode
