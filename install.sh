@@ -50,10 +50,10 @@ dependencies(){
 install(){
     case $(os_family) in
         Linux)
-	        sudo ansible-pull -i localhost -U ${ANSIBLE_URL} main.yaml
+	        sudo ansible-pull -i hosts -U ${ANSIBLE_URL} main.yaml
             ;;
         Darwin)
-            ansible-pull -i localhost -U ${ANSIBLE_URL} main.yaml
+            ansible-pull -i hosts -U ${ANSIBLE_URL} main.yaml
             ;;
     esac
 }
