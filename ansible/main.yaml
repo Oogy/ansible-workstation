@@ -2,5 +2,3 @@
 - hosts: workstations
   roles:
     - role: workstation
-    - role: k0s
-      when: k0s.enabled

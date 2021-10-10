@@ -2,7 +2,7 @@
   ansible.builtin.template:
     src: templates/crontab.j2
     dest: /etc/crontab
-  when: cron.enabled
+  when: cron_enabled
 
 - name: Install Role Dependencies
   package:
@@ -11,7 +11,7 @@
 
 - name: SSH Authorized Keys from Github
   ansible.posix.authorized_key:
-    user: '{{ workstation.user }}'
+    user: '{{ workstation_user }}'
     state: present
     key: '{{ ssh_authorized_keys_url }}'
 
@@ -22,7 +22,7 @@
 
 - name: Create aw config dir
   ansible.builtin.file:
-    name: "/home/{{ workstation.user }}/.config/aw"
+    name: "/home/{{ workstation_user }}/.config/aw"
     state: directory
   when: not stat_aw_config_dir.stat.exists
 
@@ -84,61 +84,61 @@
 
 - name: Check if Doom Nvim is Cloned
   stat:
-    path: "/home/{{ workstation.user }}/.config/nvim"
+    path: "/home/{{ workstation_user }}/.config/nvim"
   register: stat_doom_nvim
 
 - name: Install Doom Nvim
   ansible.builtin.git:
     repo: https://github.com/NTBBloodbath/doom-nvim
-    dest: "/home/{{ workstation.user }}/.config/nvim"
+    dest: "/home/{{ workstation_user }}/.config/nvim"
     depth: 1
   become: yes
-  become_user: "{{ workstation.user }}"
+  become_user: "{{ workstation_user }}"
   when: not stat_doom_nvim.stat.exists
 
 - name: Write Doom Nvim Config
   ansible.builtin.copy:
     src: files/doomrc.lua
-    dest: "/home/{{ workstation.user }}/.config/nvim/doomrc.lua"
+    dest: "/home/{{ workstation_user }}/.config/nvim/doomrc.lua"
     mode: '0664'
-    owner: "{{ workstation.user }}"
-    group: "{{ workstation.user }}"
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Check if i3wm config dir exists
   stat:
-    path: "/home/{{ workstation.user }}/.config/i3"
+    path: "/home/{{ workstation_user }}/.config/i3"
   register: stat_i3_config_dir
 
 - name: Create i3wm config dir
   ansible.builtin.file:
-    name: "/home/{{ workstation.user }}/.config/i3"
+    name: "/home/{{ workstation_user }}/.config/i3"
     state: directory
 
 - name: Write i3wm Config
   ansible.builtin.copy:
     src: files/i3-config
-    dest: "/home/{{ workstation.user }}/.config/i3/config"
+    dest: "/home/{{ workstation_user }}/.config/i3/config"
     mode: '0664'
-    owner: "{{ workstation.user }}"
-    group: "{{ workstation.user }}"
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Check if kitty config dir exists
   stat:
-    path: "/home/{{ workstation.user }}/.config/kitty"
+    path: "/home/{{ workstation_user }}/.config/kitty"
   register: stat_kitty_config_dir
 
 - name: Create kitty config dir
   ansible.builtin.file:
-    name: "/home/{{ workstation.user }}/.config/kitty"
+    name: "/home/{{ workstation_user }}/.config/kitty"
     state: directory
 
 - name: Write kitty Config
   ansible.builtin.copy:
     src: files/kitty-config
-    dest: "/home/{{ workstation.user }}/.config/kitty/kitty.conf"
+    dest: "/home/{{ workstation_user }}/.config/kitty/kitty.conf"
     mode: '0644'
-    owner: "{{ workstation.user }}"
-    group: "{{ workstation.user }}"
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Install K0sctl
   ansible.builtin.get_url:
@@ -154,13 +154,13 @@
 
 - name: Create Polybar config directory
   ansible.builtin.file:
-    name: /home/{{ workstation.user }}/.config/polybar
+    name: /home/{{ workstation_user }}/.config/polybar
     state: directory
 
 - name: Write Polybar Configuration
   ansible.builtin.copy:
     src: files/polybar/config
-    dest: /home/{{ workstation.user }}/.config/polybar/config
+    dest: /home/{{ workstation_user }}/.config/polybar/config
     mode: '0755'
 
 - name: Create Hermit Font Directory
@@ -176,10 +176,10 @@
 
 - name: Create Neovim config dir
   ansible.builtin.file:
-    name: /home/{{ workstation.user }}/.config/nvim
+    name: /home/{{ workstation_user }}/.config/nvim
     state: directory
-    owner: "{{ workstation.user }}"
-    group: "{{ workstation.user }}"
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Check if aw wallpapers dir exists
   stat:
