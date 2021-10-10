@@ -1,8 +1,5 @@
 workstation: 
   user: monitor
-cron:
-  enabled: false
-  schedule: "*/5  *  *  *  *"
 k0s:
   k0sctl:
     config_dir: /etc/k0sctl

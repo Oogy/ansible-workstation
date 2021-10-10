@@ -1,5 +1,2 @@
 workstation: 
   user: tachikoma
-cron:
-  enabled: false
-  schedule: "*/5  *  *  *  *"
