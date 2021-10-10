@@ -1,8 +1,5 @@
 ---
 - hosts: localhost
-  pre_tasks:
-    - include_vars:
-        file: 'host_vars/{{ ansible_hostname }}.yaml'
   roles:
     - role: workstation
     - role: wireguard

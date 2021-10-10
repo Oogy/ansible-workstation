@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-ANSIBLE_URL="https://github.com/Oogy/ansible-workstation.git"
+ANSIBLE_URL="https://github.com/Oogy/workstation.git"
 AW_CONFIG_DIR="/opt/aw"
 
 os_family(){
@@ -50,10 +50,10 @@ dependencies(){
 install(){
     case $(os_family) in
         Linux)
-	        sudo ansible-pull -i localhost -U ${ANSIBLE_URL} main.yml
+	        sudo ansible-pull -i localhost -U ${ANSIBLE_URL} ansible/main.yml
             ;;
         Darwin)
-            ansible-pull -i localhost -U ${ANSIBLE_URL} main.yml
+            ansible-pull -i localhost -U ${ANSIBLE_URL} ansible/main.yml
             ;;
     esac
 }

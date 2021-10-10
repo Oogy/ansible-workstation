@@ -1,0 +1,21 @@
+workstation: 
+  user: monitor
+k0s:
+  k0sctl:
+    config_dir: /etc/k0sctl
+  dummy:
+    nic: kube-dummy
+    ip: 192.168.255.1
+  enabled: true
+  cluster:
+    name: tachikoma
+    version: "1.22.1+k0s.0"
+  helm:
+    repositories:
+      - name: "argo"
+        url: "https://argoproj.github.io/argo-helm"
+    charts:
+      - name: "argocd"
+        chartname: "argo/argo-cd"
+        version: "3.17.6"
+        namespace: "argocd"
