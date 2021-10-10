@@ -1,5 +1,5 @@
 - name: Install Workstation Cron
-  template:
+  ansible.builtin.template:
     src: templates/crontab.j2
     dest: /etc/crontab
   when: cron.enabled
