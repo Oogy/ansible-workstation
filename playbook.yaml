@@ -1,5 +1,5 @@
 ---
-- hosts: local
+- hosts: workstations
   roles:
     - role: workstation
     - role: k0s
