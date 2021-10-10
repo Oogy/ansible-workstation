@@ -1,8 +1,6 @@
 ---
-- hosts: localhost
+- hosts: local
   roles:
     - role: workstation
-    - role: wireguard
-      when: wireguard.enabled
     - role: k0s
       when: k0s.enabled
