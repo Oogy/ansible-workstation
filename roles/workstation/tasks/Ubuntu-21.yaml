@@ -3,9 +3,6 @@
     src: templates/crontab.j2
     dest: /etc/crontab
 
-- include_vars:
-    file: 'host_vars/{{ ansible_hostname }}.yaml'
-
 - name: Install Role Dependencies
   package:
     name: gnupg2
