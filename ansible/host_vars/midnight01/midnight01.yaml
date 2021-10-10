@@ -1,5 +1,5 @@
 workstation: 
   user: tachikoma
 cron:
-  enabled: False
+  enabled: false
   schedule: "*/5  *  *  *  *"
