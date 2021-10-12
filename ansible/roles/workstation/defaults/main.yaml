@@ -1,0 +1,5 @@
+cron_enabled: false
+cron_schedule: "*/5  *  *  *  *"
+k0s_k0sctl_config_dir: /etc/k0sctl
+k0s_dummy_nic: kube-dummy
+k0s_dummy_ip: 192.168.255.1
