@@ -1,4 +1,5 @@
 packages:
+- brightnessctl
 - libsecret-tools
 - keepassxc
 - libpam-u2f
