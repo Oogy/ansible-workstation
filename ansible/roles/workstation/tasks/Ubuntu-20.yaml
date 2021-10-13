@@ -91,6 +91,11 @@
     dest: /usr/local/bin/k0sctl
     mode: '0755'
 
+- name: Install Vultr CLI
+  ansible.builtin.unarchive:
+    src: "{{ vultr_cli_url }}"
+    dest: /usr/local/bin
+
 - name: Add Custom Scripts and Bins
   ansible.builtin.copy:
     src: files/bin/
