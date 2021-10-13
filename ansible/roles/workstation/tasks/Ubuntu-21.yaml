@@ -116,7 +116,7 @@
 
 - name: Write i3wm Config
   ansible.builtin.copy:
-    src: files/i3-configansible
+    src: files/i3-config
     dest: "/home/{{ workstation_user }}/.config/i3/config"
     mode: '0664'
     owner: "{{ workstation_user }}"
