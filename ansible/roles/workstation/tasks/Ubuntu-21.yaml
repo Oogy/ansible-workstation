@@ -144,6 +144,7 @@
   ansible.builtin.unarchive:
     src: "{{ vultr_cli_url }}"
     dest: /usr/local/bin
+    remote_src: yes
 
 - name: Install K0sctl
   ansible.builtin.unarchive:
