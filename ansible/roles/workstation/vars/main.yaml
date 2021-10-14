@@ -1,4 +1,5 @@
 packages:
+- cscope
 - brightnessctl
 - libsecret-tools
 - keepassxc
