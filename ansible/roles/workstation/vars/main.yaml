@@ -124,6 +124,8 @@ homebrew_cask_packages:
 - vlc
 - vmware-fusion
 - lens
+npm_packages:
+- bash-language-server
 aw_config_dir_path: "/home/{{ workstation_user }}/.config/aw"
 aw_wallpapers_dir_path: "{{ aw_config_dir_path }}/wallpapers"
 vmware_workstation_version: "16.1.2-17966106"

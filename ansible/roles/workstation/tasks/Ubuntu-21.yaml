@@ -210,6 +210,15 @@
     state: present
   with_items: "{{ packages }}"
 
+- name: Install NPM Packages
+  community.general.npm:
+    name: "{{ npm_package }}"
+    global: yes
+    state: present
+  loop: "{{ npm_packages }}"
+  loop_control:
+    loop_var: npm_package
+
 - name: Ubuntu 21.x Virtualization Host
   block:
     - name: Install Vagrant
