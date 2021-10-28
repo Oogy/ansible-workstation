@@ -184,6 +184,8 @@
     src: https://github.com/portacle/portacle/releases/download/1.4/lin-portacle.tar.xz
     dest: "/home/{{ workstation_user }}"
     remote_src: yes
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
 
 - name: Check if aw wallpapers dir exists
   stat:
