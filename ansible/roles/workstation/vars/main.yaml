@@ -1,4 +1,5 @@
 packages:
+- emacs
 - elinks
 - global
 - cscope
