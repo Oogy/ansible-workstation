@@ -1,4 +1,5 @@
 packages:
+- rlwrap 
 - sbcl
 - emacs
 - elinks
