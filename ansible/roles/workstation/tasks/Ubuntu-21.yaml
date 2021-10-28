@@ -82,28 +82,6 @@
     name: tree-sitter-cli
     global: yes
 
-- name: Check if Doom Nvim is Cloned
-  stat:
-    path: "/home/{{ workstation_user }}/.config/nvim"
-  register: stat_doom_nvim
-
-- name: Install Doom Nvim
-  ansible.builtin.git:
-    repo: https://github.com/NTBBloodbath/doom-nvim
-    dest: "/home/{{ workstation_user }}/.config/nvim"
-    depth: 1
-  become: yes
-  become_user: "{{ workstation_user }}"
-  when: not stat_doom_nvim.stat.exists
-
-- name: Write Doom Nvim Config
-  ansible.builtin.copy:
-    src: files/doomrc.lua
-    dest: "/home/{{ workstation_user }}/.config/nvim/doomrc.lua"
-    mode: '0664'
-    owner: "{{ workstation_user }}"
-    group: "{{ workstation_user }}"
-
 - name: Check if i3wm config dir exists
   stat:
     path: "/home/{{ workstation_user }}/.config/i3"
@@ -186,6 +164,20 @@
     state: directory
     owner: "{{ workstation_user }}"
     group: "{{ workstation_user }}"
+
+- name: Check if Spacemacs is Cloned
+  stat:
+    path: "/home/{{ workstation_user }}/.emacs.d"
+  register: stat_spacemacs
+
+- name: Install SpaceMacs
+  ansible.builtin.git:
+    repo: https://github.com/syl20bnr/spacemacs
+    dest: "/home/{{ workstation_user }}/.emacs.d"
+    depth: 1
+  become: yes
+  become_user: "{{ workstation_user }}"
+  when: not stat_spacemacs.stat.exists
 
 - name: Check if aw wallpapers dir exists
   stat:
