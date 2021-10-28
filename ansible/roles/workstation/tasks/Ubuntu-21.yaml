@@ -165,19 +165,19 @@
     owner: "{{ workstation_user }}"
     group: "{{ workstation_user }}"
 
-- name: Check if Spacemacs is Cloned
+- name: Check if Doom is Cloned
   stat:
     path: "/home/{{ workstation_user }}/.emacs.d"
-  register: stat_spacemacs
+  register: stat_doom_emacs
 
 - name: Install SpaceMacs
   ansible.builtin.git:
-    repo: https://github.com/syl20bnr/spacemacs
+    repo: https://github.com/hlissner/doom-emacs 
     dest: "/home/{{ workstation_user }}/.emacs.d"
     depth: 1
   become: yes
   become_user: "{{ workstation_user }}"
-  when: not stat_spacemacs.stat.exists
+  when: not stat_doom_emacs.stat.exists
 
 - name: Install asdf
   ansible.builtin.git:
