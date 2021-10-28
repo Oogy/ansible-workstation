@@ -179,6 +179,15 @@
   become_user: "{{ workstation_user }}"
   when: not stat_spacemacs.stat.exists
 
+- name: Install asdf
+  ansible.builtin.git:
+    repo:  https://github.com/asdf-vm/asdf.git
+    dest: "/home/{{ workstation_user }}/.asdf"
+    version: "v0.8.1"
+    depth: 1
+  become: yes
+  become_user: "{{ workstation_user }}"
+
 - name: Check if aw wallpapers dir exists
   stat:
     path: "{{ aw_wallpapers_dir_path }}"

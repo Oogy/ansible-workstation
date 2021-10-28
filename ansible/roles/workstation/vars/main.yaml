@@ -1,4 +1,5 @@
 packages:
+- sbcl
 - emacs
 - elinks
 - global
