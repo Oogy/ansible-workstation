@@ -179,6 +179,12 @@
   become_user: "{{ workstation_user }}"
   when: not stat_spacemacs.stat.exists
 
+- name: Install Portacle
+  ansible.builtin.unarchive:
+    src: https://github.com/portacle/portacle/releases/download/1.4/lin-portacle.tar.xz
+    dest: "/home/{{ workstation_user }}"
+    remote_src: yes
+
 - name: Check if aw wallpapers dir exists
   stat:
     path: "{{ aw_wallpapers_dir_path }}"
