@@ -203,6 +203,12 @@
     dest: /usr/local/bin/elixir
     remote_src: yes
 
+- name: Set Executable Path
+  ansible.builtin.lineinfile:
+    path: "/home/{{ workstation_user }}/.bashrc"
+    line: "export PATH=$PATH:/usr/local/bin/elixir/bin"
+    create: yes
+
 - name: Check if aw wallpapers dir exists
   stat:
     path: "{{ aw_wallpapers_dir_path }}"
