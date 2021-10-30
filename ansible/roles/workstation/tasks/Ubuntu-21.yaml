@@ -195,7 +195,6 @@
 - name: Update APT Cache and Install Erlang
   apt:
     name: esl-erlang
-    allow_unauthenticated: yes
     update_cache: yes
 
 - name: Install Elixir
