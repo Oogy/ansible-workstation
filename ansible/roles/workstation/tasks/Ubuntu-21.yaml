@@ -188,6 +188,19 @@
   become: yes
   become_user: "{{ workstation_user }}"
 
+- name: Install Erlang Repository
+  apt:
+    deb: https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb 
+
+- name: Update APT Cache and Install Erlang
+  apt:
+    name: esl-erlang
+    update_cache: yes
+
+- name: Install Elixir
+  apt:
+    name: elixir
+
 - name: Check if aw wallpapers dir exists
   stat:
     path: "{{ aw_wallpapers_dir_path }}"
