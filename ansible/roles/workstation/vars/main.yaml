@@ -1,4 +1,5 @@
 packages:
+- inxi
 - cl-quicklisp
 - rlwrap 
 - sbcl
