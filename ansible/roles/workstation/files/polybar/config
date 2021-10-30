@@ -66,7 +66,7 @@ font-0 = "Hurmit Nerd Font Mono:size=10;3"
 font-1 = "Hurmit Nerd Font Mono:size=21;4"
 
 modules-left = i3 date 
-modules-right = cpu memory filesystem wireless-network pulseaudio backlight battery
+modules-right = cpu memory filesystem wireless-network pulseaudio battery
 
 tray-position = none
 
