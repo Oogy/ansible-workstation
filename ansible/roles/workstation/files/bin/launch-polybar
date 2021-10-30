@@ -9,8 +9,9 @@ backlight_card(){
         "ThinkPad X230")
             export BACKLIGHT_CARD="acpi_video0"
             ;;
-        "ThinkPad T14 Gen 2a"
+          "ThinkPad T14 Gen 2a")
             export BACKLIGHT_CARD="amdgpu_bl0"
+            ;;
         *)
             export BACKLIGHT_CARD="intel_backlight"
             ;;
