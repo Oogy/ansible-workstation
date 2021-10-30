@@ -196,6 +196,7 @@
   apt:
     name: esl-erlang
     update_cache: yes
+    force: yes
 
 - name: Install Elixir
   apt:
