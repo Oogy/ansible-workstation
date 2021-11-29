@@ -3,7 +3,6 @@ packages:
 - cl-quicklisp
 - rlwrap 
 - sbcl
-- emacs
 - elinks
 - global
 - cscope
@@ -131,7 +130,7 @@ homebrew_cask_packages:
 - vmware-fusion
 - lens
 npm_packages:
-- bash-language-server
+- bash-language-serverhttps://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 aw_config_dir_path: "/home/{{ workstation_user }}/.config/aw"
 aw_wallpapers_dir_path: "{{ aw_config_dir_path }}/wallpapers"
 vmware_workstation_version: "16.1.2-17966106"
