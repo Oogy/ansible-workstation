@@ -71,6 +71,10 @@
     deb: "{{ obsidian_url }}"
   when: not stat_obsidian.stat.exists
 
+- name: Install Minikube
+  apt:
+    deb: "{{ minikube_url }}"
+
 - name: Install Slack Nebula
   ansible.builtin.unarchive:
     src: "{{ nebula_url }}"
