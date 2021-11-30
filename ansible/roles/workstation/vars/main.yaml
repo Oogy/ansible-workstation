@@ -132,7 +132,7 @@ homebrew_cask_packages:
 - vmware-fusion
 - lens
 npm_packages:
-- bash-language-serverhttps://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+- bash-language-server
 aw_config_dir_path: "/home/{{ workstation_user }}/.config/aw"
 aw_wallpapers_dir_path: "{{ aw_config_dir_path }}/wallpapers"
 vmware_workstation_version: "16.1.2-17966106"
