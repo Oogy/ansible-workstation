@@ -1,3 +1,6 @@
+role_deps:
+- gnupg2
+- npm
 packages:
 - inxi
 - cl-quicklisp
@@ -91,7 +94,6 @@ homebrew_packages:
 - node
 - npm
 - autossh
-- d12frosted/emacs-plus/emacs-plus@27
 - git
 - glances
 - htop

@@ -6,8 +6,11 @@
 
 - name: Install Role Dependencies
   package:
-    name: gnupg2
+    name: "{{ dep }}"
     state: present
+  loop: "{{ role_deps }}"
+  loop_control:
+    loop_var: dep
 
 - name: SSH Authorized Keys from Github
   ansible.posix.authorized_key:
