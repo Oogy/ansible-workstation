@@ -1,1 +1,9 @@
 workstation_user: director
+zfs_pool_name: headquarters
+zfs_pool_mount_point: /mnt/hq-vault
+zfs_pool_disk_ids:
+  - "ata-WDC_WD30EZRZ-00GXCB0_WD-WCC7K1JVUKYP"
+  - "ata-WDC_WD30EZRZ-00GXCB0_WD-WCC7K2HU8KU1"
+zfs_pool_device_type: mirror
+
+

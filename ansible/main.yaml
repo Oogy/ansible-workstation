@@ -1,5 +1,11 @@
 ---
-- hosts: workstations
+- hosts: laptops
   connection: local
   roles:
     - role: workstation
+  
+- hosts: desktops
+  connection: local
+  roles:
+    - role: workstation
+    - role: zfs

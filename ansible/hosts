@@ -1,5 +1,7 @@
-[workstations]
-headquarters0
+[laptops]
 midnight01
 midnight02
 m01
+
+[desktops]
+headquarters0
