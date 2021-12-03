@@ -1,6 +1,6 @@
 - name: Check if Pool Exists
   stat:
-    path: {{ zfs_pool_mount_point }}
+    path: "{{ zfs_pool_mount_point }}"
   register: stat_zfs_pool_mount_point
 
 - name: Create ZFS Pool
