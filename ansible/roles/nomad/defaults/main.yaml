@@ -1,9 +1,9 @@
 nomad_config_path: "/etc/nomad.d/nomad.hcl"
 nomad_data_dir: "/var/lib/nomad"
 nomad_bind_addr: "0.0.0.0"
-nomad_advertise_http: "{{ ansible_default_ipv4 }}"
-nomad_advertise_rpc: "{{ ansible_default_ipv4 }}"
-nomad_advertise_serf: "{{ ansible_default_ipv4 }}"
+nomad_advertise_http: "{{ ansible_default_ipv4["address"] }}"
+nomad_advertise_rpc: "{{ ansible_default_ipv4["address"] }}"
+nomad_advertise_serf: "{{ ansible_default_ipv4["address"] }}"
 nomad_server_enabled: "true"
 nomad_server_bootstrap_expect: 3
 nomad_client_enabled: "true"
