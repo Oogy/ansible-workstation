@@ -2,6 +2,7 @@ role_deps:
 - gnupg2
 - npm
 packages:
+- nomad
 - qemu
 - qemu-kvm
 - libvirt-daemon

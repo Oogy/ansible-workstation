@@ -7,5 +7,6 @@
 - hosts: desktops
   connection: local
   roles:
+    - role: nomad
     - role: workstation
     - role: zfs

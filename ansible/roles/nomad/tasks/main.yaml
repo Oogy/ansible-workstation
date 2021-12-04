@@ -1,0 +1,7 @@
+- name: Template Nomad configuration
+  ansible.builtin.template:
+    src: templates/config.hcl.j2
+    dest: "{{ nomad_config_path }}"
+    owner: nomad
+    group: nomad
+    mode: '0644'
