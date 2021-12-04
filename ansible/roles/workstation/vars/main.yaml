@@ -2,6 +2,12 @@ role_deps:
 - gnupg2
 - npm
 packages:
+- qemu
+- qemu-kvm
+- libvirt-daemon
+- libvirt-clients
+- bridge-utils
+- virt-manager
 - inxi
 - cl-quicklisp
 - rlwrap 
