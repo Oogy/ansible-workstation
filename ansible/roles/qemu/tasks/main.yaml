@@ -19,7 +19,7 @@
     group: "root"
     mode: '0711'
     state: directory
-  when: qemu_image_urls is not []
+  when: qemu_image_urls != []
   loop: "{{ qemu_image_urls }}"
   loop_control:
     loop_var: image
@@ -32,3 +32,4 @@
   loop: "{{ qemu_image_urls }}"
   loop_control:
     loop_var: image
+  when: qemu_image_urls != []
