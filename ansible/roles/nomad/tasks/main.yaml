@@ -5,3 +5,10 @@
     owner: nomad
     group: nomad
     mode: '0644'
+  nofity: reload nomad
+
+- name: Start Nomad
+  ansible.builtin.systemd:
+    name: nomad
+    state: started
+    enabled: yes
