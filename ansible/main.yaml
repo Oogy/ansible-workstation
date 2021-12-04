@@ -7,6 +7,5 @@
 - hosts: desktops
   connection: local
   roles:
-    - role: wireguard
     - role: workstation
     - role: zfs
