@@ -7,6 +7,7 @@
 - hosts: desktops
   connection: local
   roles:
+    - role: qemu
     - role: workstation
     - role: zfs
     - role: nomad
