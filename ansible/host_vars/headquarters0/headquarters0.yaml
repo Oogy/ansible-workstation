@@ -18,4 +18,4 @@ nomad_datacenter: "headquarters"
 nomad_data_dir: "{{ zfs_pool_mount_point}}/nomad"
 qemu_image_base_path: "/mnt/hq-vault/libvirt/images"
 qemu_image_urls:
-  - {image_dir: "ubuntu", url: "https://cloud-images.ubuntu.com/impish/current/impish-server-cloudimg-amd64.img"}
+  - {distro: "ubuntu", url: "https://cloud-images.ubuntu.com/impish/current/impish-server-cloudimg-amd64.img"}

@@ -14,7 +14,7 @@
 
 - name: Create virt image subdirectories
   ansible.builtin.file:
-    path: "{{ qemu_image_base_path }}/{{ image.dir }}"
+    path: "{{ qemu_image_base_path }}/{{ image.distro }}"
     owner: "root"
     group: "root"
     mode: '0711'
@@ -27,7 +27,7 @@
 - name: Download virt images
   ansible.builtin.get_url:
     url: "{{ image.url }}"
-    dest: "{{ qemu_image_base_path }}/{{ image.image_dir }}"
+    dest: "{{ qemu_image_base_path }}/{{ image.distro }}"
     mode: '0444'
   loop: "{{ qemu_image_urls }}"
   loop_control:
