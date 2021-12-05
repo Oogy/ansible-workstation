@@ -1,19 +1,24 @@
-[laptops]
-midnight01
-midnight02
-m01
+all:
+  children:
+    laptops:
+      hosts:
+        midnight01:
+        midnight02:
+        m01:
+    desktops:
+      hosts:
+        headquarters0:
+    master:
+      hosts:
+        headquarters0:
+    node:
+      hosts:
+        headquarters0:
+    k3s_cluster:
+      vars:
+        extra_server_args: "--allow-privileged=true"
+      children:
+        master:
+        node:
 
-[desktops]
-headquarters0
-
-[master]
-headquarters0
-
-[node]
-headquarters0
-
-[k3s_cluster:children]
-extra_server_args="--allow-privileged=true"
-master
-node
-
+    
