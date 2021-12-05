@@ -20,7 +20,7 @@ all:
         ansible_user: debian
         systemd_dir: /etc/systemd/system
         master_ip: "{{ ansible_default_ipv4 }}"
-        extra_server_args: "--allow-privileged=true"
+        extra_server_args: ""
         extra_agent_args: ""
       children:
         master:
