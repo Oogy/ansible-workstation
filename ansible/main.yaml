@@ -3,8 +3,6 @@
   connection: local
   roles:
     - role: workstation
-  
-- import_playbook: k3s-ansible/site.yml 
 
 - hosts: desktops
   connection: local

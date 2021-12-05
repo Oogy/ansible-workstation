@@ -8,21 +8,4 @@ all:
     desktops:
       hosts:
         headquarters0:
-    master:
-      hosts:
-        headquarters0:
-    node:
-      hosts:
-    k3s_cluster:
-      vars:
-        k3s_version: v1.22.3+k3s1
-        ansible_user: director
-        systemd_dir: /etc/systemd/system
-        master_ip: "{{ ansible_default_ipv4.address }}"
-        extra_server_args: ""
-        extra_agent_args: ""
-      children:
-        master:
-        node:
-
     
