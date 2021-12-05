@@ -2,6 +2,7 @@ role_deps:
 - gnupg2
 - npm
 packages:
+- python3.9-venv
 - containerd
 - nomad
 - qemu
