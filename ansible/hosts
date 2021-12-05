@@ -11,9 +11,6 @@ all:
     master:
       hosts:
         headquarters0:
-    node:
-      hosts:
-        headquarters0:
     k3s_cluster:
       vars:
         k3s_version: v1.22.3+k3s1
@@ -24,6 +21,5 @@ all:
         extra_agent_args: ""
       children:
         master:
-        node:
 
     
