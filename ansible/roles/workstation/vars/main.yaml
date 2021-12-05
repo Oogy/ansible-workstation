@@ -3,6 +3,8 @@ role_deps:
 - npm
 packages:
 - python3.9-venv
+- docker.io
+- conntrack
 - containerd
 - nomad
 - qemu
