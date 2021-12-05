@@ -16,6 +16,8 @@ wireguard_private_key: !vault |
 wireguard_address: 10.7.7.1/24
 nomad_datacenter: "headquarters"
 nomad_data_dir: "{{ zfs_pool_mount_point}}/nomad"
+nomad_plugin_qemu_image_paths: "{{ qemu_image_base_path }}"
 qemu_image_base_path: "/mnt/hq-vault/libvirt/images"
 qemu_image_urls:
   - {distro: "ubuntu", url: "https://cloud-images.ubuntu.com/impish/current/impish-server-cloudimg-amd64.img", filename: "impish-server-cloudimg-amd64.img"}
+

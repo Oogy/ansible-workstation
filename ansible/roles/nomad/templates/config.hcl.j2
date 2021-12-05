@@ -23,5 +23,12 @@ client {
 plugin "raw_exec" {
   config {
     enabled = true
+
+  }
+}
+
+plugin "qemu" {
+  config {
+    image_paths = ["{{ nomad_plugin_qemu_image_paths }}"]
   }
 }
