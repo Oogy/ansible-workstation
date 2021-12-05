@@ -5,3 +5,15 @@ m01
 
 [desktops]
 headquarters0
+
+[master]
+headquarters0
+
+[node]
+headquarters0
+
+[k3s_cluster:children]
+extra_server_args="--allow-privileged=true"
+master
+node
+

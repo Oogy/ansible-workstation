@@ -7,7 +7,9 @@
 - hosts: desktops
   connection: local
   roles:
-    - role: qemu
     - role: workstation
     - role: zfs
+    - role: qemu
     - role: nomad
+
+- import_playbook: k3s-ansible/site.yml 
