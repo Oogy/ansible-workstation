@@ -4,6 +4,8 @@
   roles:
     - role: workstation
   
+- import_playbook: k3s-ansible/site.yml 
+
 - hosts: desktops
   connection: local
   roles:
@@ -12,4 +14,3 @@
     - role: qemu
     - role: nomad
 
-- import_playbook: k3s-ansible/site.yml 
