@@ -20,3 +20,4 @@ nomad_plugin_qemu_image_paths: "{{ qemu_image_base_path }}"
 qemu_image_base_path: "/mnt/hq-vault/libvirt/images"
 qemu_image_urls:
   - {distro: "ubuntu", url: "https://cloud-images.ubuntu.com/impish/current/impish-server-cloudimg-amd64.img", filename: "impish-server-cloudimg-amd64.img"}
+k3s_control_node: true
