@@ -4,6 +4,11 @@
   roles:
     - role: workstation
 
+- hosts: headquarters0
+  connection: local
+  roles:
+    - role: k3s
+
 - hosts: desktops
   connection: local
   roles:
@@ -11,4 +16,4 @@
     - role: zfs
     - role: qemu
     - role: nomad
-    - role: k3s
+
