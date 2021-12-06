@@ -6,6 +6,9 @@
 
 - hosts: headquarters0
   connection: local
+  vars:
+    k3s_control_node: true
+    k3s_build_cluster: true
   roles:
     - role: k3s
 
