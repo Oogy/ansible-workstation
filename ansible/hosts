@@ -8,4 +8,8 @@ all:
     desktops:
       hosts:
         headquarters0:
+    k3s_cluster:
+      hosts:
+        headquarters0:
+
     
