@@ -11,5 +11,4 @@
     - role: zfs
     - role: qemu
     - role: nomad
-    - role: xanmanning.k3s
-
+    - role: k3s

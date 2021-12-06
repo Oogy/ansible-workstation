@@ -1,0 +1,6 @@
+[submodule "ansible/roles/ansible-role-k3s"]
+	path = ansible/roles/ansible-role-k3s
+	url = https://github.com/PyratLabs/ansible-role-k3s.git
+[submodule "ansible/roles/k3s"]
+	path = ansible/roles/k3s
+	url = https://github.com/PyratLabs/ansible-role-k3s.git
