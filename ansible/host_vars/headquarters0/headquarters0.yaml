@@ -71,6 +71,7 @@ network:
     # frontline
 users: 
   - name: director
+    shell: /bin/bash
     groups:
       - sudo
     authorized_keys:

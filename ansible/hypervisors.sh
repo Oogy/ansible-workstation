@@ -20,7 +20,7 @@ configure_apt(){
 }
 
 dependencies(){
-  apt -y install python3-pip git
+  apt -y install python3-pip git sudo
   pip3 install ansible
 }
 

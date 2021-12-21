@@ -1,4 +1,10 @@
 ---
+- name: Set passwordless sudo
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    regexp: '%sudo'
+    line: "%sudo	ALL=(ALL:ALL) NOPASSWD: ALL"
+
 - name: Configure users
   include_tasks: "users.yaml"
   loop: "{{ users }}"

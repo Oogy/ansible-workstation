@@ -1,6 +1,7 @@
 - name: Create user account 
   ansible.builtin.user:
     name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
     groups: "{{ item.groups | join(',') }}"
     append: yes
 
@@ -8,6 +9,7 @@
   ansible.posix.authorized_key:
     user: "{{ item.name }}"
     key: "{{ key }}"
+    state: present
   loop: "{{ item.authorized_keys }}"
   loop_control:
     loop_var: key
