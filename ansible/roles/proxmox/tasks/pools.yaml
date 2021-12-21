@@ -1,6 +1,6 @@
  name: Get Proxmox Pools
  ansible.builtin.shell:
-   cmd: pvesh ls pools --output-format=json
+   cmd: "pvesh ls pools --output-format=json"
 register: get_proxmox_pools
 
 - set_fact:
