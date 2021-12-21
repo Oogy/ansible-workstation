@@ -31,7 +31,7 @@ install(){
 main(){
   configure_apt
   dependencies
-  instal
+  install
 }
 
 main
