@@ -18,8 +18,8 @@ safe_apt(){
 
 linux_dependencies(){
     echo "+ doing linux things"
-	safe_apt -y update
-	safe_apt -y install python3-pip git
+	  safe_apt -y update
+	  safe_apt -y install python3-pip git
     pip3 install ansible
     echo "+ creating aw config dir"
     sudo mkdir -p ${AW_CONFIG_DIR}
