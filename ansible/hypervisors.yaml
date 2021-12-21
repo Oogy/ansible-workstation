@@ -6,5 +6,5 @@
     - storage
     - users
     - security
-      #- proxmox
+    - proxmox
 
