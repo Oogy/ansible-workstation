@@ -1,9 +1,4 @@
 storage:
-  - name: DiskImages
-    type: bare-fs
-    filesystem: ext4
-    device: ata-WDC_WDS100T2B0A-00SM50_1832B1804407
-    mount_point_prefix: /mnt/pve
   - name: Vault
     type: zfs
     mount_point_prefix: /
