@@ -4,7 +4,8 @@
      - /usr/bin/pvesh
      - ls
      - pools
-     - --output-format=json
+     - --output-format
+     - json
 register: get_proxmox_pools
 
 - set_fact:
