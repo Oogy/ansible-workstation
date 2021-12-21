@@ -6,7 +6,7 @@
 
 - name: Set authorized_keys for user
   ansible.posix.authorized_key:
-    user: "{{ item.user }}"
+    user: "{{ item.name }}"
     key: "{{ key }}"
   loop: "{{ item.authorized_keys }}"
   loop_control:
