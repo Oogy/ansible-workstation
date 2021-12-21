@@ -1,0 +1,24 @@
+ name: Get Proxmox Pools
+ ansible.builtin.shell:
+   cmd: pvesh ls pools --output-format=json
+register: get_proxmox_pools
+
+- set_fact:
+    cacheable: no
+    current_proxmox_pools: []
+
+- set_fact:
+   cacheable: no
+   current_proxmox_pools: "{{ current_proxmox_pools + [pool.name] if pool.name not in current_proxmox_pools else current_proxmox_pools }}"
+  loop: "{{ get_proxmox_pools.stdout | from_json }}"
+  loop_control:
+    loop_var: pool
+
+- name: Create Proxmox Pools
+  ansible.builtin.shell:
+    cmd: "pvesh create pools --poolid {{ pool }}"
+  loop: "{{ proxmox_pools }}"
+  loop_control:
+    loop_var: pool
+  when: pool not in current_proxmox_pools
+

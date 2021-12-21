@@ -1,7 +1,4 @@
 ---
 # tasks file for proxmox
-- name: Network
-  import_tasks: network.yaml
-
-- name: Storage
-  import_tasks: storage.yaml
+- name: Pools
+  import_tasks: pools.yaml
