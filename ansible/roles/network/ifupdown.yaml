@@ -1,5 +1,6 @@
 - name: Write network configuration
   ansible.builtin.copy:
-    content: "{{ network.config }}"
+    content: |
+      "{{ network.config }}"
     dest: "/etc/network/interfaces"
   notify: restart networking
