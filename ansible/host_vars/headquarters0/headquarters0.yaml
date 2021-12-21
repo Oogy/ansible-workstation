@@ -23,7 +23,6 @@ network:
     	post-up echo 1 > /proc/sys/net/ipv4/ip_forward
     	post-up echo 1 > /proc/sys/net/ipv4/conf/enp4s0/proxy_arp
     iface enp6s0 inet manual
-    # Home LAN, bridged to physical NIC   
     auto vmbr0
     iface vmbr0 inet static
     	address 10.0.0.2/24
@@ -33,47 +32,48 @@ network:
     	bridge-fd 0
     	bridge-vlan-aware yes
     	bridge-vids 2-4094
-    # hq-prod internal
+    # Home LAN, bridged to physical NIC   
     auto vmbr1
     iface vmbr1 inet static
     	address 192.168.1.0/24
     	bridge-ports none
     	bridge-stp off
     	bridge-fd 0
-    # hq-test internal
+    # hq-prod internal
     auto vmbr2
     iface vmbr2 inet static
     	address 192.168.2.0/24
     	bridge-ports none
     	bridge-stp off
     	bridge-fd 0
-    # hq-dev internal
+    # hq-test internal
     auto vmbr3
     iface vmbr3 inet static
     	address 192.168.3.0/24
     	bridge-ports none
     	bridge-stp off
     	bridge-fd 0
-    # shooting-range
+    # hq-dev internal
     auto vmbr66
     iface vmbr66 inet static
     	address 192.168.66.0/24
     	bridge-ports none
     	bridge-stp off
     	bridge-fd 0
-    # cleanroom
+    # shooting-range
     auto vmbr77
     iface vmbr77 inet static
     	bridge-ports none
     	bridge-stp off
     	bridge-fd 0
-    # frontline
+    # cleanroom
     auto vmbr88
     iface vmbr88 inet static
     	address 192.168.88.0/24
     	bridge-ports none
     	bridge-stp off
     	bridge-fd 0
+    # frontline
 users: 
   - name: director
     groups:
