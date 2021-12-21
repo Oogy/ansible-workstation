@@ -1,6 +1,0 @@
-zfs_pool_name: default-pool
-zfs_pool_mount_point: /mnt/data
-zfs_pool_disk_ids: []
-zfs_pool_device_type: raidz
-zfs_pool_ashift: 12
-

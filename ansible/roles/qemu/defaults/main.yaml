@@ -1,2 +1,0 @@
-qemu_image_base_path: "/var/lib/libvirt/images"
-qemu_image_urls: []

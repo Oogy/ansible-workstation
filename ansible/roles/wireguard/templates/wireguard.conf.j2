@@ -1,6 +1,0 @@
-[Interface]
-PrivateKey = {{ wireguard_private_key }}
-Address = {{ wireguard_address }}
-PostUp = iptables -A FORWARD -i {{ wireguard_interface }} -j ACCEPT; iptables -t nat -A POSTROUTING -o {{ ansible_default_ipv4["alias"] }} -j MASQUERADE
-PostDown = iptables -D FORWARD -i {{ wireguard_interface  }} -j ACCEPT; iptables -t nat -D POSTROUTING -o {{ ansible_default_ipv4["alias"] }} -j MASQUERADE
-ListenPort = {{ wireguard_listen_port }}

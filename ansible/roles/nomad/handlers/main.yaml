@@ -1,4 +1,0 @@
-- name: reload nomad
-  ansible.builtin.systemd:
-    name: nomad
-    state: reloaded

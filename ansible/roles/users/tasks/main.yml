@@ -1,0 +1,4 @@
+---
+- name: Configure users
+  include_tasks: "users.yaml"
+  loop: "{{ users }}"

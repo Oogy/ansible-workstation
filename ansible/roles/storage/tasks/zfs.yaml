@@ -1,0 +1,14 @@
+- name: Check if Pool Exists
+  stat:
+    path: "{{ item.mount_point_prefix }}/{{ item.name }}"
+  register: stat_zfs_pool_mount_point
+
+- name: Create ZFS Pool
+  command: >-
+    zpool create -f 
+    -o ashift={{ item.ashift }}
+    -m {{ item.mount_point_prefix }}/{{ item.name }}
+    {{ item.name }}
+    {{ item.raid_level }}
+    {{ item.devices | join(' ') }}
+  when: not stat_zfs_pool_mount_point.stat.exists

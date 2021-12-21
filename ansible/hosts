@@ -1,15 +1,13 @@
 all:
   children:
-    laptops:
-      hosts:
-        midnight01:
-        midnight02:
-        m01:
-    desktops:
-      hosts:
-        headquarters0:
-    k3s_cluster:
-      hosts:
-        headquarters0:
-
+    hard:
+      children:
+        laptops:
+          hosts:
+            midnight01:
+            midnight02:
+            m01:
+        hypervisors:
+          hosts:
+            headquarters0:
     

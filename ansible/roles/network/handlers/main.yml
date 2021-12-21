@@ -1,0 +1,6 @@
+---
+# handlers file for network
+- name: restart networking
+  ansible.builtin.systemd:
+    name: networking
+    state: restarted

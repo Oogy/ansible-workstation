@@ -1,0 +1,6 @@
+---
+# tasks file for storage
+- name: Configure storage
+  include_tasks: "{{ item.type }}.yaml"
+  loop: "{{ storage }}"
+

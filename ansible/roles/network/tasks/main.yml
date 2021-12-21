@@ -1,0 +1,4 @@
+---
+# tasks file for network
+- name: Configure network
+  import_tasks: "{{ network.type }}.yaml"

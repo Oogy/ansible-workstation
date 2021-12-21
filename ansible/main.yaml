@@ -1,21 +1,3 @@
 ---
-- hosts: laptops
-  connection: local
-  roles:
-    - role: workstation
-
-- hosts: headquarters0
-  connection: local
-  vars:
-    k3s_build_cluster: true
-  roles:
-    - role: k3s
-
-- hosts: desktops
-  connection: local
-  roles:
-    - role: workstation
-    - role: zfs
-    - role: qemu
-    - role: nomad
-
+- import_playbook: laptops.yaml
+- import_playbook: hypervisors.yaml

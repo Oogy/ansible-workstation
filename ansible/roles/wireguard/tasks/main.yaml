@@ -1,6 +1,0 @@
-- name: Template Out Wireguard Config(s)
-  template:
-    src: templates/wireguard.conf.j2
-    dest: /etc/wireguard/{{ wireguard_interface }}.conf
-  no_log: True
-  register: wg_template

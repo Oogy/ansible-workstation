@@ -1,0 +1,9 @@
+---
+- hosts: hypervisors
+  connection: local
+  roles:
+    - network
+    - storage
+    - users
+      #- proxmox
+
