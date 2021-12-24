@@ -83,4 +83,5 @@ proxmox_pools:
   - shooting-range
   - cleanroom
   - frontline
-
+proxmox_users:
+  - templater
