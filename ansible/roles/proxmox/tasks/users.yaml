@@ -20,11 +20,11 @@
   loop_control:
     loop_var: user
 
-- name: Create Proxmox Pools
+- name: Create Proxmox Users
   ansible.builtin.shell:
     cmd: "pvesh create access/users --userid {{ user }}@pam"
   loop: "{{ proxmox_users }}"
   loop_control:
     loop_var: user
-  when: user not in current_proxmox_users
+  when: user+"@pam" not in current_proxmox_users
 
