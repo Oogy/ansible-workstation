@@ -2,3 +2,6 @@
 # tasks file for proxmox
 - name: Pools
   import_tasks: pools.yaml
+
+- name: VM Templates
+  import_tasks: templates.yaml
