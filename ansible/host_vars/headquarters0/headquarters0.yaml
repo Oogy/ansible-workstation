@@ -87,6 +87,6 @@ proxmox_users:
   - templater
 apt_repos:
   - gpg_key: https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
-    repo: "deb https://pkgs.tailscale.com/stable/debian bullseye main" 
+    repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bullseye main" 
 apt_packages:
   - tailscale
