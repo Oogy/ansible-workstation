@@ -4,6 +4,7 @@
   roles:
     - network
     - system
+    - bin
     - storage
     - users
     - security
