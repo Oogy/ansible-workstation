@@ -4,7 +4,3 @@ proxmox_storage:
   directories: []
   zfs_pools: []
 proxmox_network_config: ""
-templates: []
-template_default_ram: 2048
-template_default_cpu: 1
-template_default_disk: 25G

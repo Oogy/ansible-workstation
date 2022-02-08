@@ -1,0 +1,28 @@
+- name: Add APT repo GPG keys
+  loop: "{{ apt_repos }}"
+  loop_control:
+    loop_var: repo
+  apt_key:
+    url: "{{ repo.gpg_key }}"
+    state: present
+
+- name: Install APT repos
+  loop: "{{ apt_repos }}"
+  loop_control:
+    loop_var: repo
+  apt_repository:
+    repo: "{{ repo.url }}"
+    state: present
+
+- name: Update APT Cache
+  apt:
+    update_cache: yes
+
+- name: Install APT Packages
+  loop: "{{ apt_packages }}"
+  loop_control:
+    loop_var: package
+  apt:
+    name: "{{ package }}"
+    state: present
+

@@ -1,0 +1,8 @@
+---
+# tasks file for ansible/roles/bin
+
+- name: Add custom scripts and utils
+  ansible.builtin.copy:
+    src: files/bin/
+    dest: /usr/local/bin
+    mode: '0755'

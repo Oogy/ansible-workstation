@@ -3,8 +3,5 @@
 - name: Pools
   import_tasks: pools.yaml
 
-- name: VM Templates
-  import_tasks: templates.yaml
-
 - name: Users
   import_tasks: users.yaml
