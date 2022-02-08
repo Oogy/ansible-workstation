@@ -4,6 +4,7 @@
     loop_var: repo
   apt_key:
     url: "{{ repo.gpg_key }}"
+    keyring: /etc/apt/trusted.gpg.d/3la.gpg
     state: present
 
 - name: Install APT repos
