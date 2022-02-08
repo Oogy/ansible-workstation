@@ -11,7 +11,7 @@
   loop_control:
     loop_var: repo
   apt_repository:
-    repo: "{{ repo.url }}"
+    repo: "{{ repo.repo }}"
     state: present
 
 - name: Update APT Cache
