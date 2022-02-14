@@ -159,7 +159,7 @@ obsidian_url: "https://github.com/obsidianmd/obsidian-releases/releases/download
 ssh_authorized_keys_url: "https://github.com/oogy.keys"
 nebula_version: "v1.4.0"
 nebula_url: "https://github.com/slackhq/nebula/releases/download/{{ nebula_version }}/nebula-linux-amd64.tar.gz"
-k0sctl_version: "v0.10.0"
+k0sctl_version: "v0.9.0"
 k0sctl_url: "https://github.com/k0sproject/k0sctl/releases/download/{{ k0sctl_version }}/k0sctl-linux-x64"
 vultr_cli_version: "2.8.4"
 vultr_cli_url: "https://github.com/vultr/vultr-cli/releases/download/v{{ vultr_cli_version }}/vultr-cli_{{ vultr_cli_version }}_linux_64-bit.tar.gz"
