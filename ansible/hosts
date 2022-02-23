@@ -6,8 +6,8 @@ all:
           hosts:
             midnight01:
             midnight02:
+            headquarters1:
         hypervisors:
           hosts:
             headquarters0:
-            headquarters1:
     
