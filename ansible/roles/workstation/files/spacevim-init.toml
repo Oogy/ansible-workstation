@@ -17,87 +17,84 @@
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
 
+# Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
 
 [[layers]]
-  name = "colorscheme"
-
-[[layers]]
 name = 'shell'
-default_position = 'bottom'
+default_position = 'top'
 default_height = 30
 
 [[layers]]
-  name = "debug"
+name = "colorscheme"
+
+[[layers]]
+name = "shell"
+default_position = "bottom"
+
+[[layers]]
+name = "tmux"
+
+[[layers]]
+name = "cscope"
 
 [[layers]]
 name = "fzf"
 
 [[layers]]
-  name = "git"
+name = "git"
 
 [[layers]]
-  name = "github"
+name = "github"
 
 [[layers]]
-  name = "lsp"
+name = "gtags"
 
 [[layers]]
-  name = "ssh"
+name = "lang#dockerfile"
 
 [[layers]]
-  name = "tmux"
+name = "lang#go"
 
 [[layers]]
-  name = "tools"
+name = "lang#haskell"
 
 [[layers]]
-  name = "treesitter"
+name = "lang#lua"
 
 [[layers]]
-  name = "ui"
+name = "lang#markdown"
 
 [[layers]]
-  name = "lang#crystal"
+name = "lang#json"
 
 [[layers]]
-  name = "lang#dockerfile"
+name = "lang#nix"
 
 [[layers]]
-  name = "lang#elixir"
+name = "lang#python"
 
 [[layers]]
-  name = "lang#erlang"
+name = "lang#toml"
 
 [[layers]]
-  name = "lang#go"
+name = "lang#wolfram"
 
 [[layers]]
-  name = "lang#graphql"
+name = "lsp"
+filetypes = [
+  "python",
+  "sh"
+]
 
 [[layers]]
-  name = "lang#latex"
+name = "org"
 
 [[layers]]
-  name = "lang#lisp"
-
+name = "org"
 [[layers]]
-  name = "lang#lua"
+name = "tools"
 
-[[layers]]
-  name = "lang#matlab"
-
-[[layers]]
-  name = "lang#python"
-
-[[layers]]
-  name = "lang#rust"
-
-[[layers]]
-  name = "lang#sh"
-
-[[layers]]
-  name = "lang#wolfram"
