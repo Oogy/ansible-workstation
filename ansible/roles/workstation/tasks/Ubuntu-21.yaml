@@ -254,25 +254,25 @@
       package:
         name: vagrant
         state: present
-    - name: Check if VMWare Workstation Player is installed
+    - name: Check if VMWare Workstation Pro is installed
       stat:
-        path: /usr/bin/vmplayer
+        path: /usr/bin/vmware
       register: stat_vmplayer
     
-    - name: Install VMWare Workstation Player
+    - name: Install VMWare Workstation Pro
       block:
         - name: Create VMWare Download Directory
           file:
             name: "{{ vmware_workstation_download_directory }}"
             state: directory
         
-        - name: Get VMWare Workstation
+        - name: Get VMWare Workstation Pro
           get_url:
             url: "{{ vmware_workstation_url }}"
             dest: "{{ vmware_workstation_download_directory }}/vmware.bundle"
             mode: '0755'
         
-        - name: Install VMWare Workstation
+        - name: Install VMWare Workstation Pro
           script:
             cmd: "{{ vmware_workstation_download_directory }}/vmware.bundle"
         
