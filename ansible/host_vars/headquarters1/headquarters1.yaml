@@ -1,4 +1,5 @@
 workstation_user: oogy
+workstation_user_shell: /usr/bin/xonsh
 apt_repos:
   - gpg_key: https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
     repo: "deb https://pkgs.tailscale.com/stable/debian bullseye main" 
