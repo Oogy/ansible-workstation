@@ -146,6 +146,7 @@ homebrew_cask_packages:
 - vlc
 - vmware-fusion
 - lens
+- openconnect
 npm_packages:
 - bash-language-server
 aw_config_dir_path: "/home/{{ workstation_user }}/.config/aw"
