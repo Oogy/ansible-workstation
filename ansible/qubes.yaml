@@ -1,0 +1,7 @@
+---
+- hosts: qubes
+  connection: local
+  roles:
+    - system
+    - workstation
+
