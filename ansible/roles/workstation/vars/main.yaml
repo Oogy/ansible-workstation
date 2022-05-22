@@ -62,7 +62,6 @@ packages:
 - build-essential
 - curl
 - libffi-dev
-- libffi8ubuntu1
 - libgmp-dev
 - libgmp10
 - libncurses-dev
@@ -77,10 +76,9 @@ packages:
 - barrier
 - fastboot
 - adb
-- firefox
+- firefox-esr
 - cockpit
 - git
-- glances
 - htop
 - jq
 - lastpass-cli
