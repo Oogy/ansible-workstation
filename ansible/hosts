@@ -4,7 +4,8 @@ all:
       children:
         qubes:
           hosts:
-            ansible-workstation-template:
+            personal:
+            vultr:
         laptops:
           hosts:
             midnight01:
