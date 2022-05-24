@@ -1,11 +1,13 @@
 all:
   children:
-    hard:
+    soft:
       children:
         qubes:
           hosts:
             personal:
             vultr:
+    hard:
+      children:
         laptops:
           hosts:
             midnight01:
