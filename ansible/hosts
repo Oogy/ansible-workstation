@@ -3,7 +3,7 @@ all:
     qubes:
       hosts:
         personal:
-	vultr:
+        vultr:
     soft:
       children:
         qubes:
