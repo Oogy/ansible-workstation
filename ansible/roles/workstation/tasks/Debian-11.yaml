@@ -82,12 +82,13 @@
     dest: /usr/share/fonts/opentype/hermit/
     remote_src: yes
 
-- name: Create Neovim config dir
-  ansible.builtin.file:
-    name: /home/{{ workstation_user }}/.config/nvim
-    state: directory
+- name: Neovim configs 
+  ansible.builtin.copy:
+    src: files/config/nvim
+    dest: /home/{{ workstation_user }}/.config
     owner: "{{ workstation_user }}"
     group: "{{ workstation_user }}"
+    backup: true
 
 - name: Check if Doom is Cloned
   stat:
