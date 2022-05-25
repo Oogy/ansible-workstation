@@ -1,11 +1,12 @@
 all:
   children:
+    qubes:
+      hosts:
+        personal:
+	vultr:
     soft:
       children:
         qubes:
-          hosts:
-            personal:
-            vultr:
     hard:
       children:
         laptops:
