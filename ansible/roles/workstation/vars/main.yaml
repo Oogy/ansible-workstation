@@ -84,7 +84,6 @@ packages:
 - lastpass-cli
 - nginx
 - nmap
-- neovim
 - p7zip
 - packer
 - pwgen
