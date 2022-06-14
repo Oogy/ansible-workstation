@@ -39,6 +39,14 @@
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
 
+- name: Install K8s Helm
+  ansible.builtin.unarchive:
+    src: "{{ helm_url }}"
+    dest: /usr/local/bin
+    include:
+      - helm
+    remote_src: true
+
 - name: Check if Mirantis Lens is installed
   stat:
     path: /usr/bin/lens
