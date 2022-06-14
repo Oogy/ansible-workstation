@@ -43,8 +43,10 @@
   ansible.builtin.unarchive:
     src: "{{ helm_url }}"
     dest: /usr/local/bin
-    include:
-      - helm
+    extra_opts:
+      - --strip=1
+      - --wildcars
+      - '*/helm'
     remote_src: true
 
 - name: Check if Mirantis Lens is installed
