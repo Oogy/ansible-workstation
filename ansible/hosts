@@ -11,7 +11,7 @@ all:
       children:
         laptops:
           hosts:
-	    Captains-MBP:
+	    captains-mbp:
             midnight01:
             midnight02:
             headquarters1:
