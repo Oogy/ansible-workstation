@@ -1,8 +1,13 @@
-- name: Install Workstation Script
-  template:
-    src: templates/workstation.j2
-    dest: /usr/local/bin/workstation
-    mode: '0755'
+- name: Check if aw(ansible-workstation) dir exists
+  stat:
+    path: "{{ aw_config_dir_path }}"
+  register: stat_aw_config_dir
+
+- name: Create aw config dir
+  ansible.builtin.file:
+    name: "/home/{{ workstation_user }}/.config/aw"
+    state: directory
+  when: not stat_aw_config_dir.stat.exists
 
 - name: Tap Hashicorp
   community.general.homebrew_tap:
@@ -22,8 +27,21 @@
 - name: Homebrew Cleanup
   command: brew cleanup
 
-- name: Get Doom Emacs
-  git:
-    repo: 'https://github.com/hlissner/doom-emacs.git'
-    depth: 1
-    dest: ~/.emacs.d
+- name: Add Custom Scripts and Bins
+  ansible.builtin.copy:
+    src: files/bin/
+    dest: /usr/local/bin
+    mode: '0755'
+
+- name: Neovim configs 
+  ansible.builtin.copy:
+    src: files/config/nvim
+    dest: "{{ ansible_user_dir }}/.config"
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
+    backup: true
+
+- name: Set Workstation User shell
+  ansible.builtin.user:
+    name: "{{ workstation_user }}"
+    shell: "{{ workstation_user_shell }}"

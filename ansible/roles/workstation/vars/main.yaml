@@ -102,6 +102,7 @@ packages:
 - transmission-gtk
 - transmission-cli
 homebrew_packages:
+- neovim
 - derailed/k9s/k9s
 - node
 - npm
