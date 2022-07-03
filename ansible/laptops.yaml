@@ -2,6 +2,5 @@
 - hosts: laptops
   connection: local
   roles:
-    - system
     - workstation
 
