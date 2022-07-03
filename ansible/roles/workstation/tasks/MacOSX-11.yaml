@@ -5,7 +5,7 @@
 
 - name: Create aw config dir
   ansible.builtin.file:
-    name: "/home/{{ workstation_user }}/.config/aw"
+    name: "/Users/{{ workstation_user }}/.config/aw"
     state: directory
   when: not stat_aw_config_dir.stat.exists
 
