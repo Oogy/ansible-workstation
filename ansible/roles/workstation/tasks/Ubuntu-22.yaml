@@ -1,0 +1,289 @@
+- name: Install Workstation Cron
+  ansible.builtin.template:
+    src: templates/crontab.j2
+    dest: /etc/crontab
+  when: cron_enabled
+
+- name: Install Role Dependencies
+  package:
+    name: "{{ dep }}"
+    state: present
+  loop: "{{ role_deps }}"
+  loop_control:
+    loop_var: dep
+
+- name: SSH Authorized Keys from Github
+  ansible.posix.authorized_key:
+    user: '{{ workstation_user }}'
+    state: present
+    key: '{{ ssh_authorized_keys_url }}'
+
+- name: Check if aw(ansible-workstation) dir exists
+  stat:
+    path: "{{ aw_config_dir_path }}"
+  register: stat_aw_config_dir
+
+- name: Create aw config dir
+  ansible.builtin.file:
+    name: "/home/{{ workstation_user }}/.config/aw"
+    state: directory
+  when: not stat_aw_config_dir.stat.exists
+
+- name: Add Hashicorp APT Key
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: Install Hashicorp Repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+
+- name: Install Neovim Unstable Repository
+  apt_repository:
+    repo: ppa:neovim-ppa/unstable
+    state: present
+
+- name: Check if Mirantis Lens is installed
+  stat:
+    path: /usr/bin/lens
+  register: stat_lens
+
+- name: Install Mirantis Lens
+  apt:
+    deb: "{{ mirantis_lens_url }}"
+  when: not stat_lens.stat.exists
+
+- name: Check if Mattermost is installed
+  stat:
+    path: /usr/bin/mattermost-desktop
+  register: stat_mattermost
+
+- name: Install Mattermost
+  apt:
+    deb: "{{ mattermost_url }}"
+  when: not stat_mattermost.stat.exists
+
+- name: Check if Obsidian is installed
+  stat:
+    path: /usr/bin/obsidian
+  register: stat_obsidian
+
+- name: Install Obsidian
+  apt:
+    deb: "{{ obsidian_url }}"
+  when: not stat_obsidian.stat.exists
+
+- name: Install Minikube
+  apt:
+    deb: "{{ minikube_url }}"
+
+- name: Install Slack Nebula
+  ansible.builtin.unarchive:
+    src: "{{ nebula_url }}"
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: Install Tree-Sitter-CLI for Nvim
+  community.general.npm:
+    name: tree-sitter-cli
+    global: yes
+
+- name: Check if i3wm config dir exists
+  stat:
+    path: "/home/{{ workstation_user }}/.config/i3"
+  register: stat_i3_config_dir
+
+- name: Create i3wm config dir
+  ansible.builtin.file:
+    name: "/home/{{ workstation_user }}/.config/i3"
+    state: directory
+
+- name: Write i3wm Config
+  ansible.builtin.copy:
+    src: files/i3-config
+    dest: "/home/{{ workstation_user }}/.config/i3/config"
+    mode: '0664'
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
+
+- name: Check if kitty config dir exists
+  stat:
+    path: "/home/{{ workstation_user }}/.config/kitty"
+  register: stat_kitty_config_dir
+
+- name: Create kitty config dir
+  ansible.builtin.file:
+    name: "/home/{{ workstation_user }}/.config/kitty"
+    state: directory
+
+- name: Write kitty Config
+  ansible.builtin.copy:
+    src: files/kitty-config
+    dest: "/home/{{ workstation_user }}/.config/kitty/kitty.conf"
+    mode: '0644'
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
+
+- name: Install Vultr CLI
+  ansible.builtin.unarchive:
+    src: "{{ vultr_cli_url }}"
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: Install K0sctl
+  ansible.builtin.get_url:
+    url: "{{ k0sctl_url }}"
+    dest: /usr/local/bin/k0sctl
+    mode: '0755'
+
+- name: Add Custom Scripts and Bins
+  ansible.builtin.copy:
+    src: files/bin/
+    dest: /usr/local/bin
+    mode: '0755'
+
+- name: Create Polybar config directory
+  ansible.builtin.file:
+    name: /home/{{ workstation_user }}/.config/polybar
+    state: directory
+
+- name: Write Polybar Configuration
+  ansible.builtin.copy:
+    src: files/polybar/config
+    dest: /home/{{ workstation_user }}/.config/polybar/config
+    mode: '0755'
+
+- name: Create Hermit Font Directory
+  ansible.builtin.file:
+    name: /usr/share/fonts/opentype/hermit/
+    state: directory
+
+- name: Install Hermit Font
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hermit.zip
+    dest: /usr/share/fonts/opentype/hermit/
+    remote_src: yes
+
+- name: Create Neovim config dir
+  ansible.builtin.file:
+    name: /home/{{ workstation_user }}/.config/nvim
+    state: directory
+    owner: "{{ workstation_user }}"
+    group: "{{ workstation_user }}"
+
+- name: Check if Doom is Cloned
+  stat:
+    path: "/home/{{ workstation_user }}/.emacs.d"
+  register: stat_doom_emacs
+
+- name: Install SpaceMacs
+  ansible.builtin.git:
+    repo: https://github.com/hlissner/doom-emacs 
+    dest: "/home/{{ workstation_user }}/.emacs.d"
+    depth: 1
+  become: yes
+  become_user: "{{ workstation_user }}"
+  when: not stat_doom_emacs.stat.exists
+
+- name: Install asdf
+  ansible.builtin.git:
+    repo:  https://github.com/asdf-vm/asdf.git
+    dest: "/home/{{ workstation_user }}/.asdf"
+    version: "v0.8.1"
+    depth: 1
+  become: yes
+  become_user: "{{ workstation_user }}"
+
+- name: Install Erlang
+  apt:
+    deb: https://packages.erlang-solutions.com/erlang/debian/pool/esl-erlang_24.1.3-1~ubuntu~focal_amd64.deb
+
+- name: Make Elixir Dir
+  ansible.builtin.file:
+    path: /usr/local/bin/elixir
+    state: directory
+
+- name: Install Elixir
+  ansible.builtin.unarchive:
+    src: https://github.com/elixir-lang/elixir/releases/download/v1.12.3/Precompiled.zip
+    dest: /usr/local/bin/elixir
+    remote_src: yes
+
+- name: Set Executable Path
+  ansible.builtin.lineinfile:
+    path: "/home/{{ workstation_user }}/.bashrc"
+    line: "export PATH=$PATH:/usr/local/bin/elixir/bin"
+    create: yes
+
+- name: Check if aw wallpapers dir exists
+  stat:
+    path: "{{ aw_wallpapers_dir_path }}"
+  register: stat_aw_wallpapers_dir
+
+- name: Create aw wallpapers dir
+  ansible.builtin.file:
+    name: "{{ aw_wallpapers_dir_path }}"
+    state: directory
+  when: not stat_aw_wallpapers_dir.stat.exists
+
+- name: Add aw wallpapers
+  ansible.builtin.copy:
+    src: files/wallpapers/
+    dest: "{{ aw_wallpapers_dir_path }}"
+    mode: '0755'
+
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
+
+- name: Install NPM Packages
+  community.general.npm:
+    name: "{{ npm_package }}"
+    global: yes
+    state: present
+  loop: "{{ npm_packages }}"
+  loop_control:
+    loop_var: npm_package
+
+- name: Ubuntu 21.x Virtualization Host
+  block:
+    - name: Install Vagrant
+      package:
+        name: vagrant
+        state: present
+    - name: Check if VMWare Workstation Pro is installed
+      stat:
+        path: /usr/bin/vmware
+      register: stat_vmplayer
+    
+    - name: Install VMWare Workstation Pro
+      block:
+        - name: Create VMWare Download Directory
+          file:
+            name: "{{ vmware_workstation_download_directory }}"
+            state: directory
+        
+        - name: Get VMWare Workstation Pro
+          get_url:
+            url: "{{ vmware_workstation_url }}"
+            dest: "{{ vmware_workstation_download_directory }}/vmware.bundle"
+            mode: '0755'
+        
+        - name: Install VMWare Workstation Pro
+          script:
+            cmd: "{{ vmware_workstation_download_directory }}/vmware.bundle"
+        
+        - name: Remove VMWare Install Files
+          file:
+            name: "{{ vmware_workstation_download_directory }}"
+            state: absent
+      when: not stat_vmplayer.stat.exists
+  when: ansible_virtualization_role == "host"
+
+- name: Set Workstation User shell
+  ansible.builtin.user:
+    name: "{{ workstation_user }}"
+    shell: "{{ workstation_user_shell }}"
