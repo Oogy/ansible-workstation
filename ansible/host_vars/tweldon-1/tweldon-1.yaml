@@ -1,3 +1,2 @@
-workstation_user: user
-workstation_user_shell: /usr/bin/bash
-
+workstation_user: tweldon
+workstation_user_shell: /usr/bin/zsh

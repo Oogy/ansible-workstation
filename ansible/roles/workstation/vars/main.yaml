@@ -2,12 +2,10 @@ role_deps:
 - gnupg2
 - npm
 packages:
+- zsh
 - octave
 - xonsh
 - xonsh-doc
-- tailscale
-- python3.9-venv
-- docker.io
 - conntrack
 - containerd
 - nomad
@@ -76,7 +74,6 @@ packages:
 - barrier
 - fastboot
 - adb
-- firefox-esr
 - cockpit
 - git
 - htop
