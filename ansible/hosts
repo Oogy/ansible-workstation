@@ -15,6 +15,7 @@ all:
             midnight01:
             midnight02:
             headquarters1:
+            tweldon-1:
         hypervisors:
           hosts:
             headquarters0:
