@@ -16,7 +16,7 @@ all:
             midnight02:
             headquarters1:
             tweldon-1:
-	    sidearm:
+            sidearm:
         hypervisors:
           hosts:
             headquarters0:
