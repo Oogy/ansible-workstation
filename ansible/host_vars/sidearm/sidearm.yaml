@@ -1,2 +1,2 @@
 workstation_user: administrator
-workstation_shell: /usr/bin/zsh
+workstation_user_shell: /usr/bin/bash
