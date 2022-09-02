@@ -31,7 +31,9 @@ launch_polybar(){
 	echo "+ Ethernet NIC: ${ETHERNET_NIC}"
 	
 	echo "+ Starting Polybar with Settings..."
-	polybar hud -c $POLYBAR_CONFIG & disown
+	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+		MONITOR=$m polybar hud -c $POLYBAR_CONFIG & disown
+	done
 }
 
 main(){
