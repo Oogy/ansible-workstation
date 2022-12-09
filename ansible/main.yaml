@@ -1,4 +1,3 @@
 ---
-- import_playbook: laptops.yaml
-- import_playbook: hypervisors.yaml
-- import_playbook: qubes.yaml
+- import_playbook: workstation.yaml
+- import_playbook: server.yaml

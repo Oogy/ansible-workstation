@@ -1,0 +1,6 @@
+---
+- hosts: workstations
+  connection: local
+  roles:
+    # - workstation
+
