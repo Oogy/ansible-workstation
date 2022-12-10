@@ -1,0 +1,7 @@
+---
+# tasks file for roles/base
+- import_tasks: setup.yaml
+- import_tasks: ssh.yaml
+- import_tasks: replicator.yaml
+- import_tasks: apt.yaml
+

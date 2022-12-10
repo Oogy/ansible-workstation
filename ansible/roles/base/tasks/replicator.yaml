@@ -1,0 +1,14 @@
+--
+- name: Check if replicator directory exists
+  stat:
+    path: "{{ replicator_config_path }}"
+  register: stat_replicator_config_dir
+
+- name: Create replicator configuration directory
+  ansible.builtin.file:
+    name: "{{ replicator_config_path }}"
+    state: directory
+  when: not stat_replicator_config_dir.stat.exists
+
+
+

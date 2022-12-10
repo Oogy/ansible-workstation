@@ -1,0 +1,13 @@
+---
+# defaults file for roles/base
+admin_user: director
+github_user: oogy
+replicator_config_path: "/home/{{ admin_user }}/.config/replicator"
+apt_keys:
+  - "https://apt.releases.hashicorp.com/gpg"
+apt_repositories:
+  - "ppa:neovim-ppa/unstable"
+  - "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+apt_packages:
+deb_packages:
+homebrew_packages:

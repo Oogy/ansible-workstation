@@ -1,0 +1,5 @@
+---
+# vars file for roles/base
+role_deps:
+- gnupg2
+- npm

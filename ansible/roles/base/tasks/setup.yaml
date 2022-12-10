@@ -1,0 +1,9 @@
+---
+- name: Base Dependencies
+  package:
+    name: "{{ dep }}"
+    state: present
+  loop: "{{ role_deps }}"
+  loop_control:
+    loop_var: dep
+

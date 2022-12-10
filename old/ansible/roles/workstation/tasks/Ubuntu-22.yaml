@@ -4,45 +4,45 @@
     dest: /etc/crontab
   when: cron_enabled
 
-- name: Install Role Dependencies
-  package:
-    name: "{{ dep }}"
-    state: present
-  loop: "{{ role_deps }}"
-  loop_control:
-    loop_var: dep
+#- name: Install Role Dependencies
+#  package:
+#    name: "{{ dep }}"
+#    state: present
+#  loop: "{{ role_deps }}"
+#  loop_control:
+#    loop_var: dep
 
-- name: SSH Authorized Keys from Github
-  ansible.posix.authorized_key:
-    user: '{{ workstation_user }}'
-    state: present
-    key: '{{ ssh_authorized_keys_url }}'
+#- name: SSH Authorized Keys from Github
+#  ansible.posix.authorized_key:
+#    user: '{{ workstation_user }}'
+#    state: present
+#    key: '{{ ssh_authorized_keys_url }}'
 
-- name: Check if aw(ansible-workstation) dir exists
-  stat:
-    path: "{{ aw_config_dir_path }}"
-  register: stat_aw_config_dir
+#- name: Check if replicator directory exists
+#  stat:
+#    path: "{{ aw_config_dir_path }}"
+#  register: stat_aw_config_dir
 
-- name: Create aw config dir
-  ansible.builtin.file:
-    name: "/home/{{ workstation_user }}/.config/aw"
-    state: directory
-  when: not stat_aw_config_dir.stat.exists
+#- name: Create aw config dir
+#  ansible.builtin.file:
+#    name: "/home/{{ workstation_user }}/.config/aw"
+#    state: directory
+#  when: not stat_aw_config_dir.stat.exists
 
-- name: Add Hashicorp APT Key
-  apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
-    state: present
+#- name: Add Hashicorp APT Key
+#  apt_key:
+#    url: https://apt.releases.hashicorp.com/gpg
+#    state: present
 
-- name: Install Hashicorp Repository
-  apt_repository:
-    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
-    state: present
+#- name: Install Hashicorp Repository
+#  apt_repository:
+#    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+#    state: present
 
-- name: Install Neovim Unstable Repository
-  apt_repository:
-    repo: ppa:neovim-ppa/unstable
-    state: present
+#- name: Install Neovim Unstable Repository
+#  apt_repository:
+#    repo: ppa:neovim-ppa/unstable
+#    state: present
 
 - name: Check if Mirantis Lens is installed
   stat:

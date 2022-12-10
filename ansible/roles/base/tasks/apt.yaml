@@ -1,0 +1,16 @@
+---
+- name: Add apt keys
+  apt_key:
+    url: "{{ key }}"
+    state: present
+  loop: "{{ apt_keys }}"
+  loop_control:
+    loop_var: key
+
+- name: Add apt repositories
+  apt_key:
+    url: "{{ repo }}"
+    state: present
+  loop: "{{ apt_repositories }}"
+  loop_control:
+    loop_var: repo

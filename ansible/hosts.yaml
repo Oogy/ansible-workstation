@@ -1,0 +1,11 @@
+all:
+  children:
+    workstations:
+      glider:
+      midnight01:
+      midnight02:
+      sidearm:
+      tweldon-1:
+    servers:
+      headquarters0:
+        
