@@ -14,3 +14,18 @@
   loop: "{{ apt_repositories }}"
   loop_control:
     loop_var: repo
+
+- name: Add apt packages
+  package:
+    name: "{{ package }}"
+    state: present
+  loop: "{{ apt_packages }}"
+  loop_control:
+    loop_var: package
+
+- name: Add .deb packages
+  apt:
+    deb: "{{ package }}"
+  loop: "{{ deb_packages }}"
+  loop_control:
+    loop_var: package
