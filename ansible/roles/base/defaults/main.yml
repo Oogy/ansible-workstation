@@ -126,26 +126,23 @@ homebrew_packages:
 - terraform
 - tmux
 - tree
-homebrew_cask_packages:
-- barrier
-- firefox
-- anaconda
-- discord
-- docker
-- homebrew/cask-fonts/font-ubuntu-mono-nerd-font
-- homebrew/cask-fonts/font-source-code-pro
-- google-chrome
-- iterm2
-- istat-menus
-- karabiner-elements
-- mattermost
-- qutebrowser
-- steamcmd
-- vagrant
-- vlc
-- vmware-fusion
-- lens
-- openconnect
+#homebrew_cask_packages:
+#- barrier
+#- firefox
+#- anaconda
+#- discord
+#- docker
+#- homebrew/cask-fonts/font-ubuntu-mono-nerd-font
+#- homebrew/cask-fonts/font-source-code-pro
+#- google-chrome
+#- iterm2
+#- karabiner-elements
+#- qutebrowser
+#- vagrant
+#- vlc
+#- vmware-fusion
+#- lens
+#- openconnect
 homebrew_taps:
 - "hashicorp/tap"
 npm_packages:

@@ -15,11 +15,11 @@
   loop_control:
     loop_var: package
 
-- name: Install Homebrew Cask Packages
-  command: brew install --cask {{ item }}
-  loop: '{{ homebrew_cask_packages }}'
-  loop_control:
-    loop_var: package
+#- name: Install Homebrew Cask Packages
+#  command: brew install --cask {{ item }}
+#  loop: '{{ homebrew_cask_packages }}'
+#  loop_control:
+#    loop_var: package
 
 - name: Homebrew Cleanup
   command: brew cleanup
