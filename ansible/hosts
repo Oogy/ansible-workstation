@@ -1,0 +1,13 @@
+all:
+  children:
+    workstations:
+      hosts:
+        glider:
+        midnight01:
+        midnight02:
+        sidearm:
+        tweldon-1:
+    servers:
+      hosts:
+        headquarters0:
+        
