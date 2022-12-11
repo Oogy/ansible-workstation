@@ -4,6 +4,12 @@ set -euo pipefail
 ANSIBLE_URL="https://github.com/Oogy/replicator.git"
 REPLICATOR_CONFIG_DIR="/opt/replicator"
 
+if [ $# -eq 0 ]; then
+  BRANCH="main"
+else
+  BRANCH=$1
+fi
+
 os_family(){
   uname -s
 }
@@ -50,10 +56,10 @@ dependencies(){
 install(){
     case $(os_family) in
         Linux)
-	        sudo flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts.yaml -U https://github.com/oogy/replicator.git ansible/main.yaml"
+	        sudo flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts.yaml -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH"
             ;;
         Darwin)
-            flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log /usr/local/bin/ansible-pull -i ansible/hosts.yaml -U https://github.com/oogy/replicator.git ansible/main.yaml"
+            flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log /usr/local/bin/ansible-pull -i ansible/hosts.yaml -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH"
             ;;
     esac
 }
