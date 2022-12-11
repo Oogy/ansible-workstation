@@ -7,3 +7,6 @@
 [submodule "ansible/playbooks/openstack-ansible"]
 	path = ansible/playbooks/openstack-ansible
 	url = https://github.com/openstack/openstack-ansible.git
+[submodule "ansible/kubespray"]
+	path = ansible/kubespray
+	url = https://github.com/3letteragency/kubespray.git

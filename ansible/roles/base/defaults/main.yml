@@ -147,3 +147,4 @@ homebrew_taps:
 - "hashicorp/tap"
 npm_packages:
 - bash-language-server
+kubespray_enabled: false

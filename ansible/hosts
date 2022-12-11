@@ -11,4 +11,5 @@ all:
     servers:
       hosts:
         headquarters0:
+          kubespray_enabled: true
         
