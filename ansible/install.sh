@@ -32,7 +32,7 @@ linux_dependencies(){
 mac_dependencies(){
     echo "+ doing mac things"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install python git
+    brew install python git flock
     python -m pip install ansible
 }
 
@@ -50,10 +50,10 @@ dependencies(){
 install(){
     case $(os_family) in
         Linux)
-	        sudo ansible-pull -i ansible/hosts.yaml -U ${ANSIBLE_URL} ansible/main.yaml
+	        sudo flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts.yaml -U https://github.com/oogy/replicator.git ansible/main.yaml"
             ;;
         Darwin)
-            ansible-pull -i ansible/hosts.yaml -U ${ANSIBLE_URL} ansible/main.yaml
+            flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log /usr/local/bin/ansible-pull -i ansible/hosts.yaml -U https://github.com/oogy/replicator.git ansible/main.yaml"
             ;;
     esac
 }
