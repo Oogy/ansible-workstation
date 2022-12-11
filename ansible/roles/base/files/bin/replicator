@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/aw/vault-password /usr/local/bin/ansible-pull -i ansible/hosts.yaml -U https://github.com/oogy/replicator.git ansible/main.yaml"

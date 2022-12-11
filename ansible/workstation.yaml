@@ -2,7 +2,5 @@
 - hosts: workstations
   connection: local
   roles:
-    # The workstation role needs to be a workstation playbook.
-    #   - How do we handle multiple OS's when splitting the workstation role into multiple roles?
-    # - workstation
+    - base
 

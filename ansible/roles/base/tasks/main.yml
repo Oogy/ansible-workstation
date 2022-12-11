@@ -1,8 +1,6 @@
 ---
 # tasks file for roles/base
-- import_tasks: setup.yaml
-- import_tasks: ssh.yaml
-- import_tasks: replicator.yaml
-- import_tasks: apt.yaml
-- import_tasks: npm.yaml
-- import_tasks: brew.yaml
+- name: Replicator
+  import_tasks: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yaml"
