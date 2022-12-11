@@ -3,6 +3,7 @@ all:
     workstations:
       hosts:
         glider:
+          replicator_config_path: "/Users/captain/.config/replicator"
         midnight01:
         midnight02:
         sidearm:
