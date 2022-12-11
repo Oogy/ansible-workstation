@@ -1,4 +1,5 @@
 ---
+- name: Install NPM Packages
   community.general.npm:
     name: "{{ package }}"
     global: yes
