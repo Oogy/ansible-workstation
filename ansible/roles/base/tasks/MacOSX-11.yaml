@@ -3,3 +3,4 @@
 - import_tasks: replicator.yaml
 - import_tasks: brew.yaml
 - import_tasks: npm.yaml
+- import_tasks: bin.yaml
