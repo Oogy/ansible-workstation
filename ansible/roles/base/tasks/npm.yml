@@ -1,0 +1,8 @@
+---
+  community.general.npm:
+    name: "{{ package }}"
+    global: yes
+    state: present
+  loop: "{{ npm_packages }}"
+  loop_control:
+    loop_var: package

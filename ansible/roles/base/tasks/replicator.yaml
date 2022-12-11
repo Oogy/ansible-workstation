@@ -10,5 +10,19 @@
     state: directory
   when: not stat_replicator_config_dir.stat.exists
 
+- name: Check if replicator wallpapers dir exists
+  stat:
+    path: "{{ replicator_config_path }}/wallpapers"
+  register: stat_replicator_wallpapers_dir
 
+- name: Create replicator wallpapers dir
+  ansible.builtin.file:
+    name: "{{ replicator_config_path }}/wallpapers"
+    state: directory
+  when: not stat_aw_wallpapers_dir.stat.exists
 
+- name: Add replicator wallpapers
+  ansible.builtin.copy:
+    src: files/wallpapers/
+    dest: "{{ replicator_config_path }}/wallpapers"
+    mode: '0755'

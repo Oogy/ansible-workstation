@@ -4,4 +4,5 @@
 - import_tasks: ssh.yaml
 - import_tasks: replicator.yaml
 - import_tasks: apt.yaml
-
+- import_tasks: npm.yaml
+- import_tasks: brew.yaml

@@ -103,3 +103,50 @@ apt_packages:
   - transmission-cli
 deb_packages:
 homebrew_packages:
+- neovim
+- derailed/k9s/k9s
+- node
+- npm
+- autossh
+- git
+- glances
+- htop
+- jq
+- lastpass-cli
+- nginx
+- nmap
+- p7zip
+- packer
+- pwgen
+- pypy
+- python3
+- rsync
+- s3cmd
+- syncthing
+- terraform
+- tmux
+- tree
+homebrew_cask_packages:
+- barrier
+- firefox
+- anaconda
+- discord
+- docker
+- homebrew/cask-fonts/font-ubuntu-mono-nerd-font
+- homebrew/cask-fonts/font-source-code-pro
+- google-chrome
+- iterm2
+- istat-menus
+- karabiner-elements
+- mattermost
+- qutebrowser
+- steamcmd
+- vagrant
+- vlc
+- vmware-fusion
+- lens
+- openconnect
+homebrew_taps:
+- "hashicorp/tap"
+npm_packages:
+- bash-language-server
