@@ -1,4 +1,4 @@
---
+---
 - name: Check if replicator directory exists
   stat:
     path: "{{ replicator_config_path }}"
