@@ -1,26 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+pip install netaddr ansible==5.10.0
+
 BRANCH="main"
 PLAYBOOK="cluster"
 HOSTS="ansible/hosts"
 
-if [ $# -eq 0 ]; then
-  PLAYBOOK="cluster"
-else
-  BRANCH=$1
-fi
-
-PARSED_ARGUMENTS=$(getopt -a -n replicator -o b:h:p: --long branch:,hosts:,playbook: -- "$@")
+PARSED_ARGUMENTS=$(getopt -a -n replicator -o b:h:p: --long branch:,hosts:,playbook: --
+ "$@")
 VALID_ARGUMENTS=$?
 
 eval set -- "$PARSED_ARGUMENTS"
 while :
 do
   case "$1" in
-    -b | --branch)   BRANCH="$1"   ; shift ;;
-    -h | --hosts)    HOSTS="$1"    ; shift ;;
-    -p | --playbook) PLAYBOOK="$1" ; shift ;;
+    -b | --branch)   BRANCH="$2"   ; shift 2 ;;
+    -h | --hosts)    HOSTS="$2"    ; shift 2 ;;
+    -p | --playbook) PLAYBOOK="$2" ; shift 2 ;;
     --) shift; break ;;
     # If invalid options were passed, then getopt should have reported an error,
     # which we checked as VALID_ARGUMENTS when getopt was called...
@@ -33,4 +30,7 @@ echo branch $BRANCH
 echo playbook $PLAYBOOK
 echo hosts $HOSTS
 
-# flock -n /tmp/kubespray.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/replicator.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/kubespray/$PLAYBOOK.yaml -C $BRANCH"
+flock -n /tmp/kubespray.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/replicato
+r.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible
+-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/kubespray/$PLA
+YBOOK.yml -C $BRANCH"
