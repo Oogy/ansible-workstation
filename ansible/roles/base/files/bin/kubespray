@@ -29,4 +29,8 @@ do
   esac
 done
 
-flock -n /tmp/kubespray.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/replicator.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/kubespray/$PLAYBOOK.yaml -C $BRANCH"
+echo branch $BRANCH
+echo playbook $PLAYBOOK
+echo hosts $HOSTS
+
+# flock -n /tmp/kubespray.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/replicator.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/kubespray/$PLAYBOOK.yaml -C $BRANCH"
