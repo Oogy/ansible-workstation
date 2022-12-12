@@ -27,12 +27,12 @@ linux_dependencies(){
 	  safe_apt -y update
 	  safe_apt -y install python3-pip git
     pip3 install ansible
-    echo "+ creating aw config dir"
-    sudo mkdir -p ${AW_CONFIG_DIR}
+    echo "+ creating replicator config dir"
+    sudo mkdir -p ${REPLICATOR_CONFIG_DIR}
     echo "+ Setting Ansible Vault Password"
     read -s -p "Enter Ansible Vault Password: " VAULT_PASSWORD
-    echo ${VAULT_PASSWORD} > ${AW_CONFIG_DIR}/vault-password
-    chmod 0600 $AW_CONFIG_DIR/vault-password
+    echo ${VAULT_PASSWORD} > ${REPLICATOR_CONFIG_DIR}/vault-password
+    chmod 0600 $REPLICATOR_CONFIG_DIR/vault-password
 }
 
 mac_dependencies(){
