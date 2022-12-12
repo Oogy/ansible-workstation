@@ -5,7 +5,6 @@ github_user: oogy
 replicator_config_path: "/home/{{ admin_user }}/.config/replicator"
 replicator_opt_path: "/opt/3la/replicator"
 apt_keys:
-  - "https://apt.releases.hashicorp.com/gpg"
 apt_repositories:
   - "ppa:neovim-ppa/unstable"
   - "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
@@ -86,7 +85,6 @@ apt_packages:
   - nginx
   - nmap
   - p7zip
-  - packer
   - pwgen
   - pypy
   - python3
@@ -95,7 +93,6 @@ apt_packages:
   - syncthing
   - syncthing-discosrv
   - syncthing-relaysrv
-  - terraform
   - tmux
   - tree
   - npm
@@ -117,14 +114,12 @@ homebrew_packages:
 - nginx
 - nmap
 - p7zip
-- packer
 - pwgen
 - pypy
 - python3
 - rsync
 - s3cmd
 - syncthing
-- terraform
 - tmux
 - tree
 #homebrew_cask_packages:
