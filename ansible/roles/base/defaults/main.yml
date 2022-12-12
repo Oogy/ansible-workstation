@@ -97,7 +97,7 @@ apt_packages:
   - nodejs
   - transmission-gtk
   - transmission-cli
-deb_packages:
+deb_packages: []
 homebrew_packages:
 - neovim
 - derailed/k9s/k9s
