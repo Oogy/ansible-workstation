@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-if [ $# -eq 0 ]; then
-  BRANCH="main"
-else
-  BRANCH=$1
-fi
+BRANCH="main"
+PLAYBOOK="ansible/main.yaml"
+HOSTS="ansible/hosts"
 
 os_family(){
   uname -s
@@ -11,6 +9,28 @@ os_family(){
 
 case $(os_family) in
     Linux)
+      PARSED_ARGUMENTS=$(getopt -a -n replicator -o b:h:p: --long branch:,hosts:,playbook: -- "$@")
+      VALID_ARGUMENTS=$?
+
+      eval set -- "$PARSED_ARGUMENTS"
+      while :
+      do
+        case "$1" in
+          -b | --branch)   BRANCH="$1"   ; shift ;;
+          -h | --hosts)    HOSTS="$1"    ; shift ;;
+          -p | --playbook) PLAYBOOK="$1" ; shift ;;
+          --) shift; break ;;
+          # If invalid options were passed, then getopt should have reported an error,
+          # which we checked as VALID_ARGUMENTS when getopt was called...
+          *) echo "Unexpected option: $1 - this should not happen."
+             usage ;;
+        esac
+      done
+
+      echo branch $BRANCH
+      echo hosts $HOSTS
+      echo playbook $PLAYBOOK
+            
       sudo flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH"
       ;;
     Darwin)

@@ -3,6 +3,7 @@
 admin_user: director
 github_user: oogy
 replicator_config_path: "/home/{{ admin_user }}/.config/replicator"
+replicator_opt_path: "/opt/3la/replicator"
 apt_keys:
   - "https://apt.releases.hashicorp.com/gpg"
 apt_repositories:

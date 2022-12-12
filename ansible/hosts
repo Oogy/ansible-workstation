@@ -12,4 +12,15 @@ all:
       hosts:
         headquarters0:
           kubespray_enabled: true
+    etcd:
+      hosts:
+        headquarters0:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+          hosts:
+            headquarters0:
+        kube_node:
+          hosts:
+            headquarters0:
         

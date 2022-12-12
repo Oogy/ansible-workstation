@@ -26,3 +26,4 @@
     src: files/wallpapers/
     dest: "{{ replicator_config_path }}/wallpapers"
     mode: '0755'
+
