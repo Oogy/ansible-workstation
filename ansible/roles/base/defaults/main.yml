@@ -4,7 +4,7 @@ admin_user: director
 github_user: oogy
 replicator_config_path: "/home/{{ admin_user }}/.config/replicator"
 replicator_opt_path: "/opt/3la/replicator"
-apt_keys:
+apt_keys: []
 apt_repositories:
   - "ppa:neovim-ppa/unstable"
   - "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
