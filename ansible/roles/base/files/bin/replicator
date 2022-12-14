@@ -9,7 +9,7 @@ os_family(){
 
 case $(os_family) in
     Linux)
-      PARSED_ARGUMENTS=$(getopt -a -n replicator -o b:h:p: --long branch:,hosts:,playbook: -- "$@")
+      PARSED_ARGUMENTS=$(getopt -a -n replicator -o b:h:p:t: --long branch:,hosts:,playbook:,tags: -- "$@")
       VALID_ARGUMENTS=$?
 
       eval set -- "$PARSED_ARGUMENTS"
@@ -19,6 +19,7 @@ case $(os_family) in
           -b | --branch)   BRANCH="$1"   ; shift ;;
           -h | --hosts)    HOSTS="$1"    ; shift ;;
           -p | --playbook) PLAYBOOK="$1" ; shift ;;
+          -t | --playbook) TAGS="$1"     ; shift ;;
           --) shift; break ;;
           # If invalid options were passed, then getopt should have reported an error,
           # which we checked as VALID_ARGUMENTS when getopt was called...
@@ -31,7 +32,7 @@ case $(os_family) in
       echo hosts $HOSTS
       echo playbook $PLAYBOOK
             
-      sudo flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=True ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH"
+      sudo flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=True ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH -t $TAGS"
       ;;
     Darwin)
       flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH"
