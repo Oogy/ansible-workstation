@@ -10,3 +10,6 @@
 [submodule "ansible/kubespray"]
 	path = ansible/kubespray
 	url = https://github.com/3letteragency/kubespray.git
+[submodule "tailscale"]
+	path = ansible/roles/tailscale
+	url = https://github.com/artis3n/ansible-role-tailscale.git
