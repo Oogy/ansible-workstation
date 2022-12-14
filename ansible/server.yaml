@@ -2,5 +2,7 @@
 - hosts: servers
   connection: local
   roles:
-    - base
-    - tailscale
+    - name: base
+    - name: tailscale
+      tags:
+        - tailscale
