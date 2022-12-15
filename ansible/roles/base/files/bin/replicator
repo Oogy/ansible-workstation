@@ -2,6 +2,7 @@
 BRANCH="main"
 PLAYBOOK="ansible/main.yaml"
 HOSTS="ansible/hosts"
+TAGS="all"
 
 os_family(){
   uname -s
