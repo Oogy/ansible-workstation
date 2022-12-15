@@ -7,6 +7,10 @@ os_family(){
   uname -s
 }
 
+usage(){
+  echo "Implement me"
+}
+
 case $(os_family) in
     Linux)
       PARSED_ARGUMENTS=$(getopt -a -n replicator -o b:h:p:t: --long branch:,hosts:,playbook:,tags: -- "$@")
@@ -16,10 +20,10 @@ case $(os_family) in
       while :
       do
         case "$1" in
-          -b | --branch)   BRANCH="$1"   ; shift ;;
-          -h | --hosts)    HOSTS="$1"    ; shift ;;
-          -p | --playbook) PLAYBOOK="$1" ; shift ;;
-          -t | --playbook) TAGS="$1"     ; shift ;;
+          -b | --branch)   BRANCH="$2"   ; shift 2 ;;
+          -h | --hosts)    HOSTS="$2"    ; shift 2 ;;
+          -p | --playbook) PLAYBOOK="$2" ; shift 2 ;;
+          -t | --playbook) TAGS="$2"     ; shift 2 ;;
           --) shift; break ;;
           # If invalid options were passed, then getopt should have reported an error,
           # which we checked as VALID_ARGUMENTS when getopt was called...
