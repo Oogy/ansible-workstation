@@ -4,4 +4,4 @@
   kubernetes.core.helm:
     name: replicator-entrypoint
     chart_ref: "{{ role_path }}/files/apps/entrypoint"
-    release_namespace: replicator-entrypoint
+    release_namespace: argocd
