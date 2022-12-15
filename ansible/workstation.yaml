@@ -3,4 +3,7 @@
   connection: local
   roles:
     - base
+    - name: tailscale
+      tags:
+        - tailscale
 
