@@ -8,7 +8,7 @@ PLAYBOOK="cluster"
 HOSTS="ansible/hosts"
 TAGS="all"
 
-ARSED_ARGUMENTS=$(getopt -a -n kubespray -o b:h:p:t: --long branch:,hosts:,playbook:,tags: -- "$@")
+PARSED_ARGUMENTS=$(getopt -a -n kubespray -o b:h:p:t: --long branch:,hosts:,playbook:,tags: -- "$@")
 VALID_ARGUMENTS=$?
 
 eval set -- "$PARSED_ARGUMENTS"
@@ -18,7 +18,7 @@ do
     -b | --branch)   BRANCH="$2"   ; shift 2 ;;
     -h | --hosts)    HOSTS="$2"    ; shift 2 ;;
     -p | --playbook) PLAYBOOK="$2" ; shift 2 ;;
-    -t | --playbook) TAGS="$2"     ; shift 2 ;;
+    -t | --tags) TAGS="$2"     ; shift 2 ;;
     --) shift; break ;;
     # If invalid options were passed, then getopt should have reported an error,
     # which we checked as VALID_ARGUMENTS when getopt was called...
