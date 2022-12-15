@@ -1,3 +1,4 @@
 ---
 - import_playbook: workstation.yaml
 - import_playbook: server.yaml
+- import_playbook: k8s.yaml

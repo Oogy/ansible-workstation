@@ -1,0 +1,7 @@
+---
+# tasks file for ansible/roles/argocd
+- name: Deploy ENTRYPOINT ArgoCD AppOfApps
+  kubernetes.core.helm:
+    name: Entrpoint
+    chart_ref: files/apps/entrypoint
+    release_namespace: replicator-entrypoint
