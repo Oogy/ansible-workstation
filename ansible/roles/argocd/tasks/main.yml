@@ -1,5 +1,8 @@
 ---
 # tasks file for ansible/roles/argocd
+- name: Install Kubernetes core module
+  ansible.builtin.command: ansible-galaxy collection install kubernetes.core
+
 - name: Deploy ENTRYPOINT ArgoCD AppOfApps
   kubernetes.core.k8s:
     state: present
