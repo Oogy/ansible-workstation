@@ -5,5 +5,5 @@
 - name: Deploy ENTRYPOINT ArgoCD AppOfApps
   kubernetes.core.helm:
     name: replicator-entrypoint
-    chart_ref: "{{ role_path }}/files/apps/entrypoint"
+    chart_ref: "{{ playbook_dir }}/../k8s/apps/entrypoint"
     release_namespace: argocd
