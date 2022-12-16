@@ -3,6 +3,9 @@
 - name: Install Kubernetes core module
   ansible.builtin.command: ansible-galaxy collection install kubernetes.core
 
+- name: Install Kubernetes python package
+  ansible.builtin.command: pip install kubernetes
+
 - name: Deploy ENTRYPOINT ArgoCD AppOfApps
   kubernetes.core.k8s:
     state: present
