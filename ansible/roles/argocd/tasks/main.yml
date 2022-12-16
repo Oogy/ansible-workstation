@@ -1,9 +1,6 @@
 ---
 # tasks file for ansible/roles/argocd
-- debug:
-   msg: "Deploying from {{ role_path }}/files/apps/entrypoint"
 - name: Deploy ENTRYPOINT ArgoCD AppOfApps
-  kubernetes.core.helm:
-    name: replicator-entrypoint
-    chart_ref: "{{ playbook_dir }}/../k8s/apps/entrypoint"
-    release_namespace: argocd
+  kubernetes.core.k8s:
+    state: present
+    src: files/entrypoint.yaml
