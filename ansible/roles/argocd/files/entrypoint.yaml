@@ -13,3 +13,5 @@ spec:
   project: default
   source:
     path: "k8s/apps/entrypoint"
+    repoURL: https://github.com/oogy/replicator
+    targetRevision: HEAD
