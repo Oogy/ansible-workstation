@@ -9,6 +9,7 @@ spec:
   syncPolicy:
     syncOptions:
     - ServerSideApply=true
+    - Replace=true
   source:
     repoURL: https://github.com/prometheus-community/helm-charts.git
     path: charts/kube-prometheus-stack/crds/
