@@ -27,6 +27,7 @@ spec:
   targetRevision: 43.1.1
   helm:
     releaseName: gorgon-stare
+    skipCrds: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
