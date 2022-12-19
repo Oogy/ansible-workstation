@@ -81,13 +81,6 @@ spec:
               pool: data0
               reclaimPolicy: Delete
               allowVolumeExpansion: true
-        cephObjectStores:
-          - name: ceph-objectstore
-            spec:
-              metadataPool:
-                failureDomain: host
-                replicated:
-                  size: 1
 
   destination:
     server: "https://kubernetes.default.svc"
