@@ -21,6 +21,22 @@ spec:
       selfHeal: true 
     syncOptions:     
     - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ceph-cluster
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: ceph-cluster
+    repoURL: https://charts.rook.io/release
+    targetRevision: HEAD
+    path: k8s/apps/ceph-cluster
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: rook-ceph
 #---
 # make a chart in k8s/apps/cep-cluster
 # add a cluster.yaml from https://raw.githubusercontent.com/rook/rook/release-1.9/deploy/examples/cluster.yaml in k8s/apps/ceph-cluster/templates

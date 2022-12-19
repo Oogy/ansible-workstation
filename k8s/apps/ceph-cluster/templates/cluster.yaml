@@ -1,0 +1,87 @@
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph 
+spec:
+  cephVersion:
+    image: quay.io/ceph/ceph:v17.2.5
+    allowUnsupported: false
+  dataDirHostPath: /var/lib/rook
+  skipUpgradeChecks: false
+  continueUpgradeAfterChecksEvenIfNotHealthy: false
+  waitTimeoutForHealthyOSDInMinutes: 10
+  mon:
+    count: 1
+    allowMultiplePerNode: false
+  mgr:
+    count: 1
+    allowMultiplePerNode: false
+    modules:
+      - name: pg_autoscaler
+        enabled: true
+  dashboard:
+    enabled: true
+    ssl: true
+  monitoring:
+    enabled: true
+  network:
+    connections:
+      encryption:
+        enabled: true
+  crashCollector:
+    disable: true
+    # specified number of days.
+    #daysToRetain: 30
+  logCollector:
+    enabled: true
+    periodicity: weekly # one of: hourly, daily, weekly, monthly
+    maxLogSize: 2G # SUFFIX may be 'M' or 'G'. Must be at least 1M.
+  cleanupPolicy:
+    confirmation: ""
+    sanitizeDisks:
+      method: complete
+      dataSource: zero
+      iteration: 3
+    allowUninstallWithVolumes: false
+  removeOSDsIfOutAndSafeToRemove: false
+  priorityClassNames:
+    mon: system-node-critical
+    osd: system-node-critical
+    mgr: system-cluster-critical
+  storage: 
+    useAllNodes: true
+    useAllDevices: false
+    deviceFilter: "^sd[acd]"
+    config:
+  disruptionManagement:
+    managePodBudgets: true
+    osdMaintenanceTimeout: 30
+    pgHealthCheckTimeout: 0
+    manageMachineDisruptionBudgets: false
+    machineDisruptionBudgetNamespace: openshift-machine-api
+  healthCheck:
+    daemonHealth:
+      mon:
+        disabled: false
+        interval: 45s
+      osd:
+        disabled: false
+        interval: 60s
+      status:
+        disabled: false
+        interval: 60s
+    livenessProbe:
+      mon:
+        disabled: false
+      mgr:
+        disabled: false
+      osd:
+        disabled: false
+    startupProbe:
+      mon:
+        disabled: false
+      mgr:
+        disabled: false
+      osd:
+        disabled: false
