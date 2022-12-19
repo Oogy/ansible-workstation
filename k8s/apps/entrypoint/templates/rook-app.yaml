@@ -50,7 +50,7 @@ spec:
           storage: 
             useAllNodes: true
             useAllDevices: false
-            deviceFilter: "^sd[acd]"
+            deviceFilter: "^sd[c-d]"
         cephBlockPools:
           - name: ceph-blockpool
             spec:
