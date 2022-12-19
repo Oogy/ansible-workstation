@@ -20,4 +20,96 @@ spec:
       prune: true 
       selfHeal: true 
     syncOptions:     
-    - CreateNamespace=true 
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rook-ceph
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: rook-ceph-cluster
+    repoURL: https://charts.rook.io/release
+    targetRevision: 1.10.7
+    helm:
+      releaseName: rook-ceph
+      values: |
+        monitoring:
+          enabled: true
+          createPrometheusRules: true
+          rulesNamespaceOverride: monitoring
+        cephClusterSpec:
+          mon:
+            count: 1
+          mgr:
+            count: 1
+          storage: 
+            useAllNodes: true
+            useAllDevices: false
+            deviceFilter: "^sd[acd]"
+        cephBlockPools:
+          - name: ceph-blockpool
+            spec:
+              failureDomain: host
+              replicated:
+                size: 1
+            storageClass:
+              enabled: true
+              name: ceph-block
+              isDefault: true
+              reclaimPolicy: Delete
+        cephFileSystems:
+          - name: ceph-filesystem
+            spec:
+              metadataPool:
+                replicated:
+                  size: 1
+              dataPools:
+                - failureDomain: host
+                  replicated:
+                    size: 1
+              metadataServer:
+                activeCount: 1
+                activeStandby: false
+                priorityClassName: system-cluster-critical
+            storageClass:
+              enabled: true
+              isDefault: false
+              name: ceph-filesystem
+              pool: data0
+              reclaimPolicy: Delete
+              allowVolumeExpansion: true
+        cephObjectStores:
+          - name: ceph-objectstore
+            spec:
+              metadataPool:
+                failureDomain: host
+                replicated:
+                  size: 1
+              dataPool:
+                failureDomain: host
+                erasureCoded:
+                  dataChunks: 2
+                  codingChunks: 1
+              preservePoolsOnDelete: true
+              gateway:
+                port: 80
+                resources:
+                  limits:
+                    cpu: "2000m"
+                    memory: "2Gi"
+                  requests:
+                    cpu: "1000m"
+                    memory: "1Gi"
+                instances: 1
+                priorityClassName: system-cluster-critical
+            storageClass:
+              enabled: true
+              name: ceph-bucket
+              reclaimPolicy: Delete
+                region: us-east-1
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: rook-ceph
