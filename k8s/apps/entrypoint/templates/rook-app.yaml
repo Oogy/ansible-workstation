@@ -110,6 +110,7 @@ spec:
               name: ceph-bucket
               reclaimPolicy: Delete
                 region: us-east-1
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: rook-ceph
