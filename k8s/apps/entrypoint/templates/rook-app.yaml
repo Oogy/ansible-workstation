@@ -31,7 +31,7 @@ spec:
   project: default
   source:
     chart: ceph-cluster
-    repoURL: https://charts.rook.io/release
+    repoURL: https://github.com/oogy/replicator
     targetRevision: HEAD
     path: k8s/apps/ceph-cluster
   destination:
