@@ -9,6 +9,7 @@ spec:
   source:
     chart: rook-ceph
     repoURL: https://charts.rook.io/release
+    targetRevision: master
     helm:
       releaseName: rook-ceph
   destination:
