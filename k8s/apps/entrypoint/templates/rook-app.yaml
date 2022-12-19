@@ -88,6 +88,17 @@ spec:
                 failureDomain: host
                 replicated:
                   size: 1
+              dataPool:
+                failureDomain: host
+                erasureCoded:
+                  dataChunks: 2
+                  codingChunks: 1
+              preservePoolsOnDelete: true
+            storageClass:
+              enabled: true
+              name: ceph-bucket
+              reclaimPolicy: Delete
+                region: us-east-1
 
   destination:
     server: "https://kubernetes.default.svc"
