@@ -37,7 +37,7 @@ spec:
       releaseName: rook-ceph
       values: |
         toolbox:
-          enabled: false
+          enabled: true
         monitoring:
           enabled: true
           createPrometheusRules: true
