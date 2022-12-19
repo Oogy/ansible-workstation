@@ -7,9 +7,8 @@ metadata:
 spec:
   project: default
   source:
-    chart: 
-    repoURL: 
-    targetRevision: 
+    chart: rook-ceph
+    repoURL: https://charts.rook.io/release
     helm:
       releaseName: rook-ceph
   destination:
@@ -20,5 +19,4 @@ spec:
       prune: true 
       selfHeal: true 
     syncOptions:     
-    - Validate=false 
     - CreateNamespace=true 
