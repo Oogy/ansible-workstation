@@ -14,3 +14,7 @@ spec:
     path: "k8s/apps/namespaces"
     repoURL: https://github.com/oogy/replicator
     targetRevision: HEAD
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 

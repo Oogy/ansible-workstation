@@ -19,6 +19,10 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -37,3 +41,7 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 

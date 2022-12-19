@@ -15,3 +15,7 @@ spec:
     path: "k8s/apps/kubevirt"
     repoURL: https://github.com/oogy/replicator
     targetRevision: HEAD
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 
