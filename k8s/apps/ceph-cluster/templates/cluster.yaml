@@ -1,3 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: rook-config-override
+  namespace: rook-ceph # namespace:cluster
+data:
+  config: |
+    [global]
+    osd_pool_default_size = 1
+    mon_warn_on_pool_no_redundancy = false
+    bdev_flock_retry = 20
+    bluefs_buffered_io = false
+    mon_data_avail_warn = 10
+---
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
@@ -13,10 +27,10 @@ spec:
   waitTimeoutForHealthyOSDInMinutes: 10
   mon:
     count: 1
-    allowMultiplePerNode: false
+    allowMultiplePerNode: true
   mgr:
     count: 1
-    allowMultiplePerNode: false
+    allowMultiplePerNode: true
     modules:
       - name: pg_autoscaler
         enabled: true
@@ -89,3 +103,14 @@ spec:
         disabled: false
       osd:
         disabled: false
+---
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: builtin-mgr
+  namespace: rook-ceph # namespace:cluster
+spec:
+  name: .mgr
+  replicated:
+    size: 1
+    requireSafeReplicaSize: false
