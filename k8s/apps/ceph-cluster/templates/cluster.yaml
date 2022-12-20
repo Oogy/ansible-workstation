@@ -78,7 +78,6 @@ spec:
   preservePoolsOnDelete: false
   gateway:
     port: 80
-    securePort: 443
     instances: 1
 ---
 apiVersion: ceph.rook.io/v1
