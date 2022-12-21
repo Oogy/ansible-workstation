@@ -7,11 +7,9 @@ metadata:
 spec:
   project: default
   source:
-    chart: vmware-tanzu/velero
-    repoURL: https://vmware-tanzu.github.io/helm-charts
-    targetRevision: 2.32.6
-    helm:
-      releaseName: velero
+    repoURL: https://github.com/vmware-tanzu/helm-charts.git 
+    targetRevision: velero-2.32.6
+    path: charts/velero
   destination:
     server: "https://kubernetes.default.svc"
     namespace: velero
