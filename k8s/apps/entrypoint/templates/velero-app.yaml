@@ -15,5 +15,5 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: velero
-    syncOptions:     
+  syncOptions:     
     - CreateNamespace=true
