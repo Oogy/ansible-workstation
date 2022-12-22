@@ -9,7 +9,7 @@ spec:
   source:
     chart: plex
     repoURL: https://k8s-at-home.com/charts/
-    targetRevision: 4.5.2
+    targetRevision: 6.4.3
     helm:
       releaseName: plex
   destination:
