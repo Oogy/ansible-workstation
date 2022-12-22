@@ -1,0 +1,20 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: plex
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: plex
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 4.5.2
+    helm:
+      releaseName: plex
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: plex
+  syncPolicy:
+    syncOptions:     
+      - CreateNamespace=true
