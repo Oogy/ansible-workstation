@@ -7,6 +7,7 @@ replicator_opt_path: "/opt/3la/replicator"
 apt_keys: []
 apt_repositories: []
 apt_packages:
+  - qutebrowser
   - virtualbox
   - zsh
   - octave
