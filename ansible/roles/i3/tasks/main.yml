@@ -1,0 +1,12 @@
+---
+# tasks file for roles/i3
+- name: Copy i3-wm config
+  ansible.builtin.copy:
+    src: i3-config
+    dest: "/home/{{ admin_user }}/.config/i3/config"
+    owner: "{{ admin_user }}"
+    group: "{{ admin_user }}"
+    mode: '0665'
+  notify: reload i3
+
+

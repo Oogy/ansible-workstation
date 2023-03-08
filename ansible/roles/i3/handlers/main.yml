@@ -1,0 +1,4 @@
+---
+# handlers file for roles/i3
+- name: reload i3
+  ansible.builtin.command: i3-msg reload
