@@ -54,7 +54,7 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1 
 
-font-0 = "Hurmit Nerd Font Mono:size=10;3"
+font-0 = "Hurmit Nerd Font Mono:size=16;3"
 font-1 = "Hurmit Nerd Font Mono:size=21;4"
 
 modules-left = i3 date 
