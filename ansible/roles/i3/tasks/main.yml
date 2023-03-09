@@ -13,6 +13,8 @@
   ansible.builtin.file:
     path: "/home/{{ admin_user }}/.config/polybar"
     state: directory
+    owner: "{{ admin_user }}"
+    group: "{{ admin_user }}"
     mode: '0755'
 
 - name: Copy Polybar config
@@ -22,5 +24,6 @@
     owner: "{{ admin_user }}"
     group: "{{ admin_user }}"
     mode: '0644'
+  notify: reload i3
 
 
