@@ -9,4 +9,18 @@
     mode: '0665'
   notify: reload i3
 
+- name: Polybar config director
+  ansible.builtin.file:
+    path: "/home/{{ admin_user }}/.config/polybar"
+    state: directory
+    mode: '0755'
+
+- name: Copy Polybar config
+  ansible.builtin.copy:
+    src: polybar-config
+    dest: "/home/{{ admin_user }}/.config/polybar/config"
+    owner: "{{ admin_user }}"
+    group: "{{ admin_user }}"
+    mode: '0644'
+
 
