@@ -3,7 +3,8 @@
   connection: local
   roles:
     - base
-    - name: tailscale
+    - name: i3
       tags:
-        - tailscale
+        - i3
+        - wm
 
