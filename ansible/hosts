@@ -7,7 +7,7 @@ all:
         midnight01:
         midnight02:
         sidearm:
-        tweldon-2:
+        tweldon-1:
     servers:
       hosts:
         headquarters0:
