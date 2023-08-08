@@ -1,6 +1,0 @@
----
-- hosts: laptops
-  connection: local
-  roles:
-    - workstation
-

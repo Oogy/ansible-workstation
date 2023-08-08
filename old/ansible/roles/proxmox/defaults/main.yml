@@ -1,6 +1,0 @@
----
-# defaults file for proxmox
-proxmox_storage:
-  directories: []
-  zfs_pools: []
-proxmox_network_config: ""

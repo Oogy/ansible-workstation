@@ -2,25 +2,20 @@ all:
   children:
     workstations:
       hosts:
-        glider:
-          replicator_config_path: "/Users/captain/.config/replicator"
-        midnight01:
-        midnight02:
-        sidearm:
-        tweldon-1:
+        workstation-1
     servers:
       hosts:
-        headquarters0:
-          kubespray_enabled: true
-    etcd:
+        server-1:
+          kubespray_enabled: server-1
+    etcd: # Kubespray
       hosts:
-        headquarters0:
-    k8s_cluster:
+        server-1:
+    k8s_cluster: # Kubespray
       children:
         kube_control_plane:
           hosts:
-            headquarters0:
+            server-1:
         kube_node:
           hosts:
-            headquarters0:
+            server-1:
         

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
- flock -n /tmp/ansible.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible.log ansible-pull -i ansible/hosts -U https://github.com/oogy/workstation.git ansible/main.yaml"
