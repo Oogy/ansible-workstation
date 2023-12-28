@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -exuo pipefail
+
+export REPLICATOR_DIR="${REPLICATOR_DIR:=/opt/replicator}"
+export REPLICATOR_SCRIPT_LINK="${REPLICATOR_SCRIPT_LINK:=/usr/local/bin/replicator}"
+export REPLICATOR_REPO="${REPLICATOR_REPO:=https://github.com/oogy/replicator}"
+export REPLICATOR_BRANCH_OR_TAG="${REPLICATOR_BRANCH:=main}"
+export REPLICATOR_CONFIG_REPO="${REPLICATOR_CONFIG_REPO:=https://github.com/oogy/replicate}"
+export REPLICATOR_CONFIG_DIR="${REPLICATOR_CONFIG_DIR:=/var/lib/replicator}"
+
+install(){
+	if [ ! -d ${REPLICATOR_DIR} ]; then
+		git clone ${REPLICATOR_REPO} ${REPLICATOR_DIR}
+		git checkout ${REPLICATOR_BRANCH_OR_TAG}
+	else
+		pushd ${REPLICATOR_DIR}
+		git pull origin ${REPLICATOR_BRANCH_OR_TAG}	
+		popd
+	fi
+	
+	if [ ! -L ${REPLICATOR_SCRIPT_LINK} ]; then
+		ln -s ${REPLICATOR_DIR}/replicator ${REPLICATOR_SCRIPT_LINK}
+	fi
+#	
+#	if [ ! -d ${REPLICATOR_CONFIG_DIR} ]; then
+#		mkdir -p ${REPLICATOR_CONFIG_DIR}
+#		git clone ${REPLICATOR_CONFIG_REPO} /var/lib/replicator/config
+#	fi
+}
+
+case $1 in
+	install)
+		install
+		;;
+esac
