@@ -13,9 +13,7 @@ install(){
 		git clone ${REPLICATOR_REPO} ${REPLICATOR_DIR}
 		git checkout ${REPLICATOR_BRANCH_OR_TAG}
 	else
-		pushd ${REPLICATOR_DIR}
-		git pull origin ${REPLICATOR_BRANCH_OR_TAG}	
-		popd
+		update
 	fi
 	
 	if [ ! -L ${REPLICATOR_SCRIPT_LINK} ]; then
@@ -28,8 +26,19 @@ install(){
 #	fi
 }
 
-case $1 in
-	install)
-		install
-		;;
-esac
+update(){
+	pushd ${REPLICATOR_DIR}
+	git pull origin ${REPLICATOR_BRANCH_OR_TAG}	
+	popd
+}
+
+if [ $# -gt 0 ]; then
+	case $1 in
+		install)
+			install
+			;;
+		update)
+			update
+			;;
+	esac
+fi
