@@ -1,7 +1,0 @@
-workstation_user: user
-workstation_user_shell: /usr/bin/bash
-apt_repos:
-  - gpg_key: https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
-    repo: "deb https://pkgs.tailscale.com/stable/debian bullseye main"
-apt_packages:
-  - tailscale

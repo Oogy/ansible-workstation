@@ -1,23 +1,26 @@
 all:
   children:
-    qubes:
+    workstations:
       hosts:
-        personal:
-        vultr:
-    soft:
+        glider:
+          replicator_config_path: "/Users/captain/.config/replicator"
+        midnight01:
+        midnight02:
+        sidearm:
+        tweldon-1:
+    servers:
+      hosts:
+        headquarters0:
+          kubespray_enabled: true
+    etcd:
+      hosts:
+        headquarters0:
+    k8s_cluster:
       children:
-        qubes:
-    hard:
-      children:
-        laptops:
-          hosts:
-            glider:
-            midnight01:
-            midnight02:
-            headquarters1:
-            tweldon-1:
-            sidearm:
-        hypervisors:
+        kube_control_plane:
           hosts:
             headquarters0:
-    
+        kube_node:
+          hosts:
+            headquarters0:
+        

@@ -1,5 +1,0 @@
-#!/bin/env bash
-export WALLPAPER=$1
-export WALLPAPERS_DIR=~/.config/aw/wallpapers
-
-feh --bg-scale $WALLPAPERS_DIR/$WALLPAPER

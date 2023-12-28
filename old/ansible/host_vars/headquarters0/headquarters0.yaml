@@ -1,94 +1,12 @@
-storage:
-  - name: Vault
-    type: zfs
-    mount_point_prefix: /
-    raid_level: mirror
-    ashift:
-    devices:
-      - ata-WDC_WD30EZRZ-00GXCB0_WD-WCC7K1JVUKYP
-      - ata-WDC_WD30EZRZ-00GXCB0_WD-WCC7K2HU8KU1
-network:
-  type: ifupdown
-  config: |
-    auto lo
-    iface lo inet loopback
-    iface wlp5s0 inet auto
-    auto enp4s0
-    iface enp4s0 inet dhcp
-    	post-up echo 1 > /proc/sys/net/ipv4/ip_forward
-    	post-up echo 1 > /proc/sys/net/ipv4/conf/enp4s0/proxy_arp
-    iface enp6s0 inet manual
-    auto vmbr0
-    iface vmbr0 inet static
-    	address 10.0.0.2/24
-    	gateway 10.0.0.1
-    	bridge-ports enp4s0
-    	bridge-stp off
-    	bridge-fd 0
-    	bridge-vlan-aware yes
-    	bridge-vids 2-4094
-    # Home LAN, bridged to physical NIC   
-    auto vmbr1
-    iface vmbr1 inet static
-    	address 192.168.1.0/24
-    	bridge-ports none
-    	bridge-stp off
-    	bridge-fd 0
-    # hq-prod internal
-    auto vmbr2
-    iface vmbr2 inet static
-    	address 192.168.2.0/24
-    	bridge-ports none
-    	bridge-stp off
-    	bridge-fd 0
-    # hq-test internal
-    auto vmbr3
-    iface vmbr3 inet static
-    	address 192.168.3.0/24
-    	bridge-ports none
-    	bridge-stp off
-    	bridge-fd 0
-    # hq-dev internal
-    auto vmbr66
-    iface vmbr66 inet static
-    	address 192.168.66.0/24
-    	bridge-ports none
-    	bridge-stp off
-    	bridge-fd 0
-    # shooting-range
-    auto vmbr77
-    iface vmbr77 inet static
-    	bridge-ports none
-    	bridge-stp off
-    	bridge-fd 0
-    # cleanroom
-    auto vmbr88
-    iface vmbr88 inet static
-    	address 192.168.88.0/24
-    	bridge-ports none
-    	bridge-stp off
-    	bridge-fd 0
-    # frontline
-users: 
-  - name: director
-    shell: /bin/bash
-    groups:
-      - sudo
-    authorized_keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9yZlg7wYPxClZM5NumS8MonWPtuF85DasxbUBV9MUQVF7iDUBGmlnz2Cc5QZf5F27R5g+tm0CaghoT7V4FCH9AfuoslVR+8qtfCA2eCkJScQvBlUz1bhhtzqU8qH/tlcsZMaEj/NM+mo9OQYVUNx9nPghmUpVELIcOtxkPQn+YOS6kr6A10phf157HQcHgP91fgjMrncnCEYZhDq9+fRCNWGA6r3RZv683m3jFaYiS7sUDEGwIyFo/hc2HGpP/UTEbYOjHn+AyKCi5wK+9pPvCrFdiNcZrM6Y5FUiQLFLR9un9kczDhME2vLBkSU6FfuX1Ha6x8uqsZJK2cKIZNA4sn3xxti63I4UC/Q7CkJ8dLFFwA8wFq2RMnL19j1DvENI6dLLCRjPuqTTPcZmtoIaFdCCaRxD6CWL6c633NrMCzLQuvVkWU/AUYEUXTOjVVU3S1fl5nHGXo6ZwA3Ipxl6LTPFfipWv1A5/Y+yNJvhcSBH+bjGxuVuF/KmWatCS7tYXO4hdlELMlzcNdcjdFUlCGUf1fCgDOFaoViMFI1ccloCuxN9oNdWJFstU4DG6o6QInKDdELNqgJdAys6ExtSP0MbTnThJiKm5HVa7tII4bnJLWi7TUKhSILKwAwnkfCH121O846cB3st/GMR2hsFikUE98ra1K6G7pSYhaKMow=="
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCtJEIHPS6N87+8036zBwrsM5ZAbJ51AEUNNqefSXAFSgOEcSqBP6QMMKGCkqQsGtlGbEISIfpVN5v7+Mu+kSHtzpu6yDR/OTJCEI4yUsNdJEirwtit9tCS+nNIlv1RpUJIH800YH+sPHKziB4TTMkiKkqgaAHPqWo+0OdSreTQLzeTw9jpElEGu30xP1UnfTsrvd1p6Hvew9hN1Gn2OjKQhClH1YbqUr0V42HF9fv/8YgfEOxRWaTJbEDjWBOc7Xv2aHIzPGXW9VLFganHpDjtm0w5EklvENuGfRmntQNbg5cB8yStb45flTXNzuDVd5JFpJoFNwdbZNn8T+ONTTI1IKiPtoy8q9Yvto1ePd1HRdWaclWNZ9t5QxL0cb3w6LZR9L6iTLvbux0cE3rJ5uYlADHC5LBF7DTnkCjr+O0HyXYBm42I6zrwYa+omtgyFVII8aIClsEO4UZRNpNkaAwX8BUtFqAQPqyjCR8sD+PTqfpqfy/vIN2/ATDpKg2W/HDFhTKHTdyljp24tboj+CPfmQUg1ZQzMRlI2u1CSLqjcgyrjzztk/4k+NLQih7qoDuAt8ThSkmG97ZpQ5t44MiN1izW3nbYHRhNM4JNw5zPlVebKI0yXEk1o6o4Dk9T8YwHrlPTkLstBVq7iJ+wEqKbwrc7N9nfL7AjWHfmD/p8GQ== 3la-mobile"
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDwAyJvsodGXD1/88PnCzsr/6LCiUO/yeWxccfKv+qnMHAykDRWjqJNygaOeMUbNNbL91Hk4Kg+tRi3oNGQ+8nHt6YCcngfX0D/ClmSm3p+yzu3yamGGwoZUnwo1TzzVOXiiQYfnLkQXG15QML2965Ska7+UL2D73VwfDIF3gO4LIMdUl2XCG7nUkOr7O+2jCz9Tv2s3AsSvOGm8Gxvvo2te6FU1Zeb03krIEuJzRQyBN0NTI4wVBEDSUhWpGrbKowCsxzFmAOce5HTpPwiN04aoeklHxJepNL5MVpicXxw/2zn88nLsIy4Uo6J7rD0lJd0xbtggnYyDDLCI9vR/aP7IRL7EKAGk0dHuVR9R+jmz3HQitPwJznOjhXumw9/XX9EJifDDcBbCdFSNWbTHN7PslS6rxUIZUmGxQLCQPBCgyypgLDxyw5KWjf0n29mCuTWW17+5ZWem6+p6nfbxh1anVGtFu39HvHajooIZfHt/+UOvgp1OlNKDPnvmo42+pRDxEQ4CUlMSWzR9OncV+2UAuD0IOgCybNHAOHnBJjfBytzDpEGNfokYHLcyXDqrbzsXgYRmfuIS1VZ5ksVLkrajGdAxwMheEdBzSieweFNEQmwUXTBRZCf5gSywa5foqB3dc/N9roA7fm6/BNA8EAKDBMbi6heo6XPE/knVVFHWw== oogy@headquarters1"
-proxmox_pools:
-  - hq-dev
-  - hq-test
-  - hq-prod
-  - shooting-range
-  - cleanroom
-  - frontline
-proxmox_users:
-  - templater
-apt_repos:
-  - gpg_key: https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg
-    repo: "deb https://pkgs.tailscale.com/stable/debian bullseye main" 
-apt_packages:
-  - tailscale
+cilium_operator_replicas: 1
+tailscale_authkey: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          35346666383138343466306333366239363033636664383338626237323637376239393665333964
+          3735393463636538333334393864323662663537636130330a373763346531613731646334646465
+          64316564626464376635666363366566373836303334343263623235363835353037656432346439
+          3038333966626135320a343131393963623266373437333133343963653238373836323361383532
+          37386366353930383462623531346139646261663334613739633766646365366138333432653933
+          32366165653237323138623236383263373831383430353635303931303764396230633466666239
+          343562303866336336663962343630373166
+
+tailscale_args: "--advertise-routes=192.168.1.0/24,10.233.0.0/18,10.233.64.0/18"

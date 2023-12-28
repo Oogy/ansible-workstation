@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+REPLICATOR_DIR="/opt/replicator"
+REPLICATOR_LIB="${REPLICATOR_DIR}/lib"
+REPLICATOR_CONF="${REPLICATOR_DIR}/config/default.yaml"
+
+source ${REPLICATOR_LIB}/*
+
+replicate ${REPLICATOR_CONF}

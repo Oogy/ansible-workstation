@@ -1,72 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ANSIBLE_URL="https://github.com/Oogy/replicator.git"
-REPLICATOR_CONFIG_DIR="/opt/replicator"
+REPLICATOR_INSTALL_DEPENDENCIES="git yq"
+REPLICATOR_INSTALL_DIR="/opt/replicator"
+REPLICATOR_SRC="https://github.com/Oogy/replicator.git"
+REPLICATOR_INSTALL_FILES=("lib" "bin" "config")
+REPLICATOR_TMP_DIR=$(mktemp -d)
 
-if [ $# -eq 0 ]; then
-  BRANCH="main"
-else
-  BRANCH=$1
+cd $REPLICATOR_TMP_DIR && \
+	git clone $REPLICATOR_SRC && \
+	cd replicator && \
+	source ./lib/*
+
+if ! $(directory_exists $REPLICATOR_INSTALL_DIR); then
+	mkdir -p $REPLICATOR_INSTALL_DIR
 fi
 
-os_family(){
-  uname -s
-}
+for directory in ${REPLICATOR_INSTALL_FILES[@]}; do
+	copy_directory $directory ${REPLICATOR_INSTALL_DIR}
+done
 
-safe_apt(){
-	while fuser /var/{lib/{dpkg,apt/lists},cache/apt/archives}/lock >/dev/null 2>&1 ; do
-		echo "+ Waiting for apt lock..."
-		sleep 1
-	done
-	apt "$@"
-}
-
-linux_dependencies(){
-    echo "+ doing linux things"
-	  safe_apt -y update
-	  safe_apt -y install python3-pip git
-    pip3 install ansible
-    echo "+ creating replicator config dir"
-    sudo mkdir -p ${REPLICATOR_CONFIG_DIR}
-    echo "+ Setting Ansible Vault Password"
-    read -s -p "Enter Ansible Vault Password: " VAULT_PASSWORD
-    echo ${VAULT_PASSWORD} > ${REPLICATOR_CONFIG_DIR}/vault-password
-    chmod 0600 $REPLICATOR_CONFIG_DIR/vault-password
-}
-
-mac_dependencies(){
-    echo "+ doing mac things"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install python git flock
-    python -m pip install ansible
-}
-
-dependencies(){
-    case $(os_family) in
-        Linux)
-            linux_dependencies
-            ;;
-        Darwin)
-            mac_dependencies
-            ;;
-    esac
-}
-
-install(){
-    case $(os_family) in
-        Linux)
-	        sudo flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log ANSIBLE_VAULT_PASSWORD_FILE=/opt/replicator/vault-password /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH"
-            ;;
-        Darwin)
-            flock -n /tmp/replicator.lock -c "PYTHONUNBUFFERED=1 ANSIBLE_LOG_PATH=/var/log/ansible-workstation.log /usr/local/bin/ansible-pull -i ansible/hosts -U https://github.com/oogy/replicator.git ansible/main.yaml -C $BRANCH"
-            ;;
-    esac
-}
-
-main(){
-  dependencies
-  install
-}
-
-main
+replicate ${REPLICATOR_INSTALL_DIR}/config/default.yaml
